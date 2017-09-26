@@ -32,7 +32,7 @@ $categories = \Category\Category::getAllCategory();
 $user = new \User\User();
 $usercategories = $user->getUserCategory();
 $usersubcategories = $user->getUserSubCategory();
-$parameters = $user->getAllUsersParamters();
+$userparameters = $user->getAllUsersParamters();
 
 $expenses = \Expense\Expense::getAllExpenses();
 

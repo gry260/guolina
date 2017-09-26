@@ -50,8 +50,9 @@ class User
 
   public function AddExpense($data, $type)
   {
-    \Db\DbLayer\DbLayer::insert('chicheng.users_expense', $data, $type);
+    $id = \Db\DbLayer\DbLayer::insert('chicheng.users_expense', $data, $type);
     $this->_expenses[] = new \Expense\Expense($data);
+    return $id;
   }
 
   public function DeleteCategory($id)
@@ -187,6 +188,7 @@ group by ue.user_category_id;';
         $last_counter++;
       }
     }
+    if(!empty($res))
     return $res;
 
   }

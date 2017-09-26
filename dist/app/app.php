@@ -1,3 +1,6 @@
+<?php
+require_once('./init.php');
+?>
 <div class="main-wrapper">
   <div class="app" id="app">
     <!--
@@ -8,7 +11,6 @@
     </nav>
     -->
     <header class="header">
-
     </header>
     <aside class="sidebar">
       <div class="sidebar-container">
@@ -188,6 +190,21 @@
         </ul>
       </footer>
     </aside>
+    <article class="content dashboard-page">
+      <crudcategory categories='<?php echo json_encode($categories);?>' usercategories='<?php echo json_encode($usercategories);?>' ></crudcategory>
+      <crudSubcategory userSubCategories='<?php echo json_encode($usersubcategories);?>'></crudSubcategory>
+        <div class="col-md-7">
+            <expense Expenses='<?php echo json_encode($expenses); ?>'></expense>
+        </div>
+        <div class="col-md-5">
+            <search parameters='<?php echo json_encode($userparameters);?>'></search>
+        </div>
+    </article>
     <!-- /.modal -->
   </div>
 </div>
+<script src="js/vendor.js"></script>
+<script src="js/app.js"></script>
+
+
+

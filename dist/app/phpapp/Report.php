@@ -135,8 +135,10 @@ group by  concat(date_format(e.date, "%M"), ", ", year(e.date)) ';
         $result = $sth->fetch(\PDO::FETCH_ASSOC);
         $res['By Date'][] = $result;
       }
+      return $res;
     }
-    return $res;
+
+    return false;
   }
 
   private static function BuildParamters()
