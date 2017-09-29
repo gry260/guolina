@@ -11,6 +11,40 @@ require_once('./init.php');
     </nav>
     -->
     <header class="header">
+      <?php
+      if (!empty($_SESSION['login'])) {
+        ?>
+        <div class="card sameheight-item stats" data-exclude="xs" style="height: 68px; width: 550px">
+          <div class="card-block" style="padding:10px;">
+            <div class="d-flex stats-container">
+              <div class="col-5 stat-col">
+                <div class="stat-icon float-left"><i class="fa fa-2x fa-money"></i></div>
+                <div class="ml-3">
+                  <div style="font-size:18px;">$<?php echo $totalMoney['price']; ?></div>
+                 <span style="font-size:14px;">Total Expense($)</span>
+                </div>
+              </div>
+              <div class="col-7 stat-col">
+                <div class="stat-icon float-left"><i class="fa fa-2x fa-list-alt"></i></div>
+                <div class="ml-3">
+                  <div style="font-size:18px;"><?php echo $totalRecords['records'];?></div>
+                  <span style="font-size:14px;">Total Records of Expenses(s)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <logout></logout>
+
+        <?php
+      } else {
+        ?>
+        <login></login>
+        <register></register>
+        <?php
+      }
+
+      ?>
     </header>
     <aside class="sidebar">
       <div class="sidebar-container">
@@ -191,14 +225,118 @@ require_once('./init.php');
       </footer>
     </aside>
     <article class="content dashboard-page">
-      <crudcategory categories='<?php echo json_encode($categories);?>' usercategories='<?php echo json_encode($usercategories);?>' ></crudcategory>
-      <crudSubcategory userSubCategories='<?php echo json_encode($usersubcategories);?>'></crudSubcategory>
-        <div class="col-md-7">
-            <expense Expenses='<?php echo json_encode($expenses); ?>'></expense>
+
+      <ngb-tabset>
+        <ngb-tab title="Simple">
+          <template ngbTabContent>
+            <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
+              master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
+              dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
+              iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+          </template>
+        </ngb-tab>
+        <ngb-tab>
+          <template ngbTabTitle><b>Fancy</b> title</template>
+          <template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
+            <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
+              craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
+              cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
+              yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
+              shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
+              sint qui sapiente accusamus tattooed echo park.</p>
+          </template>
+        </ngb-tab>
+      </ngb-tabset>
+
+
+      <form id="signup-form" action="/index.html" method="GET" novalidate="novalidate">
+        <div class="form-group">
+          <label for="firstname">Username</label>
+          <div class="row">
+            <div class="col-sm-12"> <input type="text" class="form-control underlined" name="username" id="username" placeholder="Enter username" required="" aria-required="true"> </div>
+          </div>
         </div>
-        <div class="col-md-5">
-            <search parameters='<?php echo json_encode($userparameters);?>'></search>
+        <div class="form-group"> <label for="firstname">Name</label>
+          <div class="row">
+            <div class="col-sm-6"> <input type="text" class="form-control underlined" name="firstname" id="firstname" placeholder="Enter firstname" required="" aria-required="true"> </div>
+            <div class="col-sm-6"> <input type="text" class="form-control underlined" name="lastname" id="lastname" placeholder="Enter lastname" required="" aria-required="true"> </div>
+          </div>
         </div>
+        <div class="form-group"> <label for="password">Password</label>
+          <div class="row">
+            <div class="col-sm-6"> <input type="password" class="form-control underlined" name="password" id="password" placeholder="Enter password" required="" aria-required="true"> </div>
+            <div class="col-sm-6"> <input type="password" class="form-control underlined" name="retype_password" id="retype_password" placeholder="Re-type password" required="" aria-required="true"> </div>
+          </div>
+        </div>
+        <div class="form-group"> <button type="submit" class="btn btn-block btn-primary">Sign Up</button> </div>
+      </form>
+      <?php
+      if (empty($_SESSION['login'])) {
+        ?>
+        <div class="col-6">
+          <div class="card sameheight-item stats" data-exclude="xs" style="height: 228px;">
+            <div class="card-block">
+              <div class="title-block">
+                <h4 class="title"> STATS AND COUNTING </h4>
+              </div>
+              <div class="row row-sm stats-container">
+                <div class="col-xs-12 col-sm-6  stat-col">
+                  <div class="stat-icon"> <i class="fa fa-text-height"></i> </div>
+                  <div class="stat">
+                    <div class="value"> <?php echo $nTags; ?> </div>
+                    <div class="name"> Total Number of Tags </div>
+                  </div> <progress class="progress stat-progress" value="60" max="100">
+                    <div class="progress">
+                      <span class="progress-bar" style="width: 60%;"></span>
+                    </div>
+                  </progress> </div>
+                <div class="col-xs-12 col-sm-6  stat-col">
+                  <div class="stat-icon"> <i class="fa fa-users"></i> </div>
+                  <div class="stat">
+                    <div class="value"> <?php echo $nUsers;?> </div>
+                    <div class="name"> Total users </div>
+                  </div> <progress class="progress stat-progress" value="34" max="100">
+                    <div class="progress">
+                      <span class="progress-bar" style="width: 34%;"></span>
+                    </div>
+                  </progress> </div>
+                <div class="col-xs-12 col-sm-6  stat-col">
+                  <div class="stat-icon"> <i class="fa fa-list-alt"></i> </div>
+                  <div class="stat">
+                    <div class="value"> <?php echo $nRecords; ?> </div>
+                    <div class="name"> Total Number of Records </div>
+                  </div> <progress class="progress stat-progress" value="49" max="100">
+                    <div class="progress">
+                      <span class="progress-bar" style="width: 49%;"></span>
+                    </div>
+                  </progress> </div>
+                <div class="col-xs-12 col-sm-6 stat-col">
+                  <div class="stat-icon"> <i class="fa fa-dollar"></i> </div>
+                  <div class="stat">
+                    <div class="value"> <?php echo $nExpenses; ?> </div>
+                    <div class="name"> Total Expenses Spent </div>
+                  </div> <progress class="progress stat-progress" value="15" max="100">
+                    <div class="progress">
+                      <span class="progress-bar" style="width: 15%;"></span>
+                    </div>
+                  </progress> </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php
+      }
+      ?>
+
+      <div class="col-md-5">
+        <search parameters='<?php echo json_encode($userparameters); ?>'></search>
+        <crudcategory categories='<?php echo json_encode($categories); ?>'
+                      usercategories='<?php echo json_encode($usercategories); ?>'></crudcategory>
+        <crudSubcategory userSubCategories='<?php echo json_encode($usersubcategories); ?>'></crudSubcategory>
+      </div>
+      <div class="col-md-7">
+        <expense Expenses='<?php echo json_encode($expenses); ?>'></expense>
+      </div>
     </article>
     <!-- /.modal -->
   </div>

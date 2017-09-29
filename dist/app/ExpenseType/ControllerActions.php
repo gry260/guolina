@@ -6,8 +6,6 @@
  * Time: 5:00 PM
  */
 
-
-
 $parameters = json_decode(file_get_contents('php://input'), true);
 require_once('../init.php');
 
@@ -48,11 +46,12 @@ if (!empty($parameters['a']) && $parameters['a'] == 'getsubcategory') {
   if (empty($parameters['type']) || ($parameters['type'] !== 'u' && !empty($parameters['type'] !== 'c'))) {
     return;
   }
+  $user_id = trim($parameters['user_id']);
   $category_id = trim($parameters['category_id']);
   $type = trim($parameters['type']);
   $loader->loadClass("Category");
   $loader->loadClass("Category\SubCategory");
-  echo json_encode(\Category\Category::getSubCategoryByID($category_id, $type));
+  echo json_encode(\Category\Category::getSubCategoryByID($category_id, $type, $user_id));
 }
 
 if (!empty($parameters['a']) && ($parameters['a'] == 'addexpense' || $parameters['a'] == 'updateexpense')) {
@@ -98,7 +97,8 @@ if(!empty($parameters['deleteusersubcategoryid'])){
 
 if(!empty($parameters['a']) && $parameters['a']  == 'removeexpenseid') {
   $id = trim($parameters['id']);
-  $u = new \User\User();
+  $user_id = trim($parameters['user_id']);
+  $u = new \User\User($user_id);
   $u->RemoveExpense($id);
 }
 

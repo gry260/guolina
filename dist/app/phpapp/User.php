@@ -8,9 +8,9 @@ class User
   private $_expenses = array();
   private $_user_id;
 
-  public function __construct()
+  public function __construct($user_id)
   {
-    $this->_user_id = 3;
+    $this->_user_id = $user_id;
   }
 
   public function getID()
@@ -33,10 +33,12 @@ class User
 
   }
 
-  public static function addUser($parameters)
+  public static function AddUser($data, $types)
   {
-
+    return \Db\DbLayer\DbLayer::insert('chicheng.users', $data, $types);
   }
+
+
 
   public function UpdateProfile($table, $data, $where, $type)
   {
@@ -73,6 +75,76 @@ where id = '.$id;
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
     return true;
+  }
+
+  public function getAllExpenses()
+  {
+    global $pdo_dbh;
+    $q = ' SELECT *, ifnull(c.id, uc.id) as category_id, ifnull(s.id, us.id) as subcategory_id,
+ifnull(c.name, uc.name) as category_name, ifnull(s.name, us.name) as subcategory_name, ue.id as id,
+ue.name as name, ue.user_id as user_id
+ FROM chicheng.users_expense ue
+left join chicheng.category c on ue.category_id = c.id
+left join chicheng.subcategory s on ue.subcategory_id = s.id
+left join chicheng.user_category uc on uc.id = ue.user_category_id
+left join chicheng.user_subcategory us on ue.user_subcategory_id = us.id
+where ue.user_id ='.$this->_user_id;
+    $sth = $pdo_dbh->prepare($q);
+    $sth->execute();
+    $count = $sth->rowCount();
+    if($count > 0)  {
+      $res = array();
+      for($i=0; $i<$count; $i++)  {
+        $result = $sth->fetch(\PDO::FETCH_ASSOC);
+        $res[] = $result;
+      }
+      return $res;
+    }
+  }
+
+  public function getAllCategory()
+  {
+    global $pdo_dbh;
+    $q = 'SELECT id, name, "c" as t  FROM chicheng.category
+union SELECT id, name, "u" as t FROM  chicheng.user_category
+where user_id = '.$this->_user_id;
+    $sth = $pdo_dbh->prepare($q);
+    $sth->execute();
+    $count = $sth->rowCount();
+    if($count > 0)  {
+      $res = array();
+      for($i=0; $i<$count; $i++)  {
+        $result = $sth->fetch(\PDO::FETCH_ASSOC);
+        $res[] = $result;
+      }
+      return $res;
+    }
+  }
+
+  public function getTotalMoneySpent()
+  {
+    global $pdo_dbh;
+    $q = 'SELECT sum(price) as price FROM chicheng.users_expense
+where user_id = '.$this->_user_id;
+    $sth = $pdo_dbh->prepare($q);
+    $sth->execute();
+    $count = $sth->rowCount();
+    if($count > 0)  {
+      return $sth->fetch(\PDO::FETCH_ASSOC);
+    }
+  }
+
+  public function getTotalNumberofRecords()
+  {
+    global $pdo_dbh;
+    $q = 'SELECT count(*) as records FROM chicheng.users_expense
+where user_id = '.$this->_user_id;
+    $sth = $pdo_dbh->prepare($q);
+    $sth->execute();
+    $count = $sth->rowCount();
+    if($count > 0)  {
+      return $sth->fetch(\PDO::FETCH_ASSOC);
+    }
   }
 
   public function getUserCategory()
@@ -239,9 +311,9 @@ where a.user_id = '.$this->_user_id;
     $sth->bindValue(':PASSWORD', $password, \PDO::PARAM_STR);
     $sth->execute();
     $count = $sth->rowCount();
-    return $count > 0 ? true : false;
+    $result = $sth->fetch(\PDO::FETCH_ASSOC);
+    return $count > 0 ? array('id'=>$result['id'],'user_key'=>$result['user_key']) : false;
   }
-
 }
 
 

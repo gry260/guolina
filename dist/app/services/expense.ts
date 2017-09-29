@@ -29,6 +29,30 @@ export class ExpenseService {
     this.http = h;
   }
 
+  AddCategory(user_id, name)
+  {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = JSON.stringify({'a': 'addcategorytype', name: name, user_id: user_id});
+    return this.http.post('app/ExpenseType/ControllerActions.php', body, options);
+  }
+  DeleteCategory(id)
+  {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = JSON.stringify({'deleteusercategoryid':id});
+    return this.http.post('app/ExpenseType/ControllerActions.php', body, options);
+  }
+
+  DeleteSubCategory(id)
+  {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = JSON.stringify({'deleteusersubcategoryid':id});
+    return this.http.post('app/ExpenseType/ControllerActions.php', body, options);
+
+  }
+
   GetCategoryKeyWords(cid) : Observable<any>
   {
     let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -45,13 +69,14 @@ export class ExpenseService {
     return this.http.post('app/Search/SearchSubmit.php', body, options);
   }
 
-  GetSubCategory(category_id, type) {
+  GetSubCategory(category_id, type, user_id) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     var parameters = {
       a:'getsubcategory',
       category_id: category_id,
-      type: type
+      type: type,
+      user_id: user_id
     }
     let body = JSON.stringify(parameters);
     return this.http.post('app/ExpenseType/ControllerActions.php', body, options);
@@ -66,7 +91,6 @@ export class ExpenseService {
   }
 
   UpdateExpense(obj){
-
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     obj.a = 'updateexpense';
@@ -74,19 +98,23 @@ export class ExpenseService {
     return this.http.post('app/ExpenseType/ControllerActions.php', body, options);
   }
 
-  addExpenseType(data) {
-    this.http.get('app/ExpenseType/ControllerActions.php?a=addcategorytype&user_id=3&name=' + data.name).map((res: Response) => res.text()).subscribe(data => {
-    }, error => {
-      console.log(error.json());
-    });
-  }
-
-  removeExpense(id)
+  RemoveExpense(obj)
   {
-    return this.http.get('app/ExpenseType/ControllerActions.php?a=removeexpenseid&id='+id).map((res: Response) => res.text());
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    obj.a = 'removeexpenseid';
+    let body = JSON.stringify(obj);
+    return this.http.post('app/ExpenseType/ControllerActions.php', body, options);
+
+    //return this.http.get('app/ExpenseType/ControllerActions.php?a=removeexpenseid&id='+id).map((res: Response) => res.text());
   }
 
-  addExpenseSubCategoryType(data) {
-    return this.http.get('app/ExpenseType/ControllerActions.php?a=addsubcategorytype&user_id=3&type=' + data.type + '&category_id=' + data.category_id + '&name=' + data.name).map((res: Response) => res.text());
+  AddExpenseSubCategoryType(data, user_id) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    data.a = 'addsubcategorytype';
+    data.user_id = user_id;
+    let body = JSON.stringify(data);
+    return this.http.post('app/ExpenseType/ControllerActions.php', body, options);
   }
 }

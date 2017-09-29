@@ -6,6 +6,9 @@ import 'rxjs/add/operator/map';
 import {ExpenseService} from "../services/expense";
 import {CategoryComponent} from "app/ExpenseType/Category";
 import {NgbModal, NgbActiveModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {LoginComponent} from "app/Users/Login.components";
+import {ChartsModule, Color} from 'ng2-charts';
 
 @Component({
     selector: 'expense',
@@ -25,15 +28,12 @@ import {NgbModal, NgbActiveModal, ModalDismissReasons} from '@ng-bootstrap/ng-bo
 export class ExpenseComponent {
 
     inputControl: FormControl;
-
     @Output('create') create: EventEmitter<string> = new EventEmitter<string>();
-
     closeResult: string;
     modalService: NgbModal;
     @Input() Expenses;
-    @Input() Test : String;
     //@ViewChild('cc', {read: ViewContainerRef}) s: ViewContainerRef;
-    ExpensesArray:any;
+    ExpensesArray: Array;
     ExpenseForm:any;
     ListCategories:any;
     ListSubCategories:any;
@@ -62,6 +62,11 @@ export class ExpenseComponent {
     constructor(e:ExpenseService, private modalService: NgbModal, private activeModal: NgbActiveModal) {
         this.ExpenseService = e;
         this.IsUpdate = false;
+
+
+
+
+
     }
 
     open(content) {
@@ -72,6 +77,11 @@ export class ExpenseComponent {
         if (this.isJson(this.Expenses)) {
             this.ExpensesArray = JSON.parse(this.Expenses);
         }
+
+        if(this.ExpensesArray == null){
+            this.ExpensesArray = new Array();
+        }
+
         this.ExpenseForm = new FormGroup({
             category_obj: new FormControl(''),
             subcategory: new FormControl(''),
@@ -85,14 +95,16 @@ export class ExpenseComponent {
     }
 
     onChange(id, type) {
-        if (id.includes(":")) {
-            var res = id.split(":");
-            id = parseInt(res[1].trim());
+        if(LoginComponent.getUserID()) {
+            if (id.includes(":")) {
+                var res = id.split(":");
+                id = parseInt(res[1].trim());
+            }
+            var Observables = this.ExpenseService.GetSubCategory(id, type.options[type.selectedIndex].getAttribute("class"), LoginComponent.getUserID());
+            Observables.subscribe((res => {
+                this.ListSubCategories = res.json();
+            }));
         }
-        var Observables = this.ExpenseService.GetSubCategory(id, type.options[type.selectedIndex].getAttribute("class"));
-        Observables.subscribe((res => {
-            this.ListSubCategories = res.json();
-        }));
         //this.ListSubCategories = data;
         /*
         this.ExpenseService.GetCategoryKeyWords(id).subscribe(res => {
@@ -103,43 +115,48 @@ export class ExpenseComponent {
         */
     }
     onSubmit(c, subcategory_obj, name, price, date, comment, id) {
+
+
         var SubmittedObj = {
-            user_id: 3,
+            user_id: LoginComponent.getUserID(),
             category_name: c.options[c.selectedIndex].innerHTML,
             subcategory_name: subcategory_obj.options[subcategory_obj.selectedIndex].innerHTML,
             id: id.value != null ? id.value : null,
             name: name.value != null ? name.value : null,
             price: price.value != null ? price.value : null,
-            date: date.value != null ? date.value : null,
+            date: date._model.year != null ? date._model.year +'-'+date._model.month+'-'+ date._model.day : null,
             comment: comment.value != null ? comment.value : null,
             category_id: c.options[c.selectedIndex].getAttribute("class") == 'c' ? parseInt(c.value) : null,
             user_category_id: c.options[c.selectedIndex].getAttribute("class") == 'u' ? parseInt(c.value) : null,
             subcategory_id: subcategory_obj.options[subcategory_obj.selectedIndex].getAttribute("class") == 'c' ? parseInt(subcategory_obj.value) : null,
             user_subcategory_id: subcategory_obj.options[subcategory_obj.selectedIndex].getAttribute("class") == 'u' ? parseInt(subcategory_obj.value) : null,
         }
-        if (this.IsUpdate === true) {
-            this.ExpenseService.UpdateExpense(SubmittedObj).subscribe(
-                data => {
-                    this.modalRef.close();
-                },
-                err => console.log(err),
-                () => console.log('Request Completed')
-            );
-            for (var i in this.ExpensesArray) {
-                if (this.ExpensesArray[i].id == SubmittedObj.id) {
-                    for (var k in SubmittedObj) {
-                        this.ExpensesArray[i][k] = SubmittedObj[k];
+
+        if(LoginComponent.getUserID()) {
+            if (this.IsUpdate === true) {
+                this.ExpenseService.UpdateExpense(SubmittedObj).subscribe(
+                    data => {
+                        this.modalRef.close();
+                    },
+                    err => console.log(err),
+                    () => console.log('Request Completed')
+                );
+                for (var i in this.ExpensesArray) {
+                    if (this.ExpensesArray[i].id == SubmittedObj.id) {
+                        for (var k in SubmittedObj) {
+                            this.ExpensesArray[i][k] = SubmittedObj[k];
+                        }
                     }
                 }
             }
-        }
-        else {
-            var Observables = this.ExpenseService.AddExpense(SubmittedObj);
-            Observables.subscribe((res => {
-                SubmittedObj.id = res.text().trim();
-                this.ExpensesArray.push(SubmittedObj);
-            }));
-           this.modalRef.close();
+            else {
+                var Observables = this.ExpenseService.AddExpense(SubmittedObj);
+                Observables.subscribe((res => {
+                    SubmittedObj.id = res.text().trim();
+                    this.ExpensesArray.push(SubmittedObj);
+                }));
+                this.modalRef.close();
+            }
         }
     }
 
@@ -166,33 +183,37 @@ export class ExpenseComponent {
     }
 
     onDelete(id) {
-        this.ExpenseService.removeExpense(id).subscribe(data => {
-            for (var i in this.ExpensesArray) {
-                if (this.ExpensesArray[i].id == id) {
-                    this.ExpensesArray.splice(i, 1);
-                    return;
+        if(LoginComponent.getUserID()) {
+            this.ExpenseService.RemoveExpense({id: id, user_id: LoginComponent.getUserID()}).subscribe(data => {
+                for (var i in this.ExpensesArray) {
+                    if (this.ExpensesArray[i].id == id) {
+                        this.ExpensesArray.splice(i, 1);
+                        return;
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     searchExpenseById(ExpenseID) {
-        for (var i in this.ExpensesArray) {
-            if (ExpenseID == this.ExpensesArray[i].id) {
-                let type = (this.ExpensesArray[i].user_category_id) ? 'u' : 'c';
-                this.ExpenseService.GetSubCategory(parseInt(this.ExpensesArray[i].category_id), type).subscribe((data) => {
-                    this.ListSubCategories = data.json();
-                }, error => {
-                });
-                this.ExpenseForm = new FormGroup({
-                    category_obj: new FormControl(parseInt(this.ExpensesArray[i].category_id)),
-                    subcategory: new FormControl(parseInt(this.ExpensesArray[i].subcategory_id)),
-                    name: new FormControl(this.ExpensesArray[i].name),
-                    price: new FormControl(this.ExpensesArray[i].price),
-                    date: new FormControl(this.ExpensesArray[i].date),
-                    comment: new FormControl(this.ExpensesArray[i].comment),
-                    id: new FormControl(this.ExpensesArray[i].id),
-                });
+        if(LoginComponent.getUserID()) {
+            for (var i in this.ExpensesArray) {
+                if (ExpenseID == this.ExpensesArray[i].id) {
+                    let type = (this.ExpensesArray[i].user_category_id) ? 'u' : 'c';
+                    this.ExpenseService.GetSubCategory(parseInt(this.ExpensesArray[i].category_id), type, LoginComponent.getUserID()).subscribe((data) => {
+                        this.ListSubCategories = data.json();
+                    }, error => {
+                    });
+                    this.ExpenseForm = new FormGroup({
+                        category_obj: new FormControl(parseInt(this.ExpensesArray[i].category_id)),
+                        subcategory: new FormControl(parseInt(this.ExpensesArray[i].subcategory_id)),
+                        name: new FormControl(this.ExpensesArray[i].name),
+                        price: new FormControl(this.ExpensesArray[i].price),
+                        date: new FormControl(this.ExpensesArray[i].date),
+                        comment: new FormControl(this.ExpensesArray[i].comment),
+                        id: new FormControl(this.ExpensesArray[i].id),
+                    });
+                }
             }
         }
         this.IsUpdate = true;

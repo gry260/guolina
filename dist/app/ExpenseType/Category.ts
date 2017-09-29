@@ -5,6 +5,7 @@ import {Injectable, ViewChild} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {ExpenseService} from "../services/expense";
 import {SubCategoryComponent} from "app/ExpenseType/SubCategory";
+import {LoginComponent} from "app/Users/Login.components";
 
 @Component({
   selector: 'crudcategory',
@@ -22,23 +23,25 @@ export class CategoryComponent {
   http: Http;
   static listCategories: any;
   SubCategoryObj: any;
-  UserCategoryArray: any;
+  UserCategoryArray: Array;
+
 
 
   constructor(e: ExpenseService, s: SubCategoryComponent, h: Http) {
     this.s = s;
     this.e = e;
     this.http = h;
-    if (this.isJson(this.categories)) {
-      CategoryComponent.listCategories = JSON.parse(this.categories);
-      this.SubCategoryObj = new SubCategoryComponent(this.e, this.http);
-    }
-
   }
   ngOnInit() {
-    if (this.isJson(this.usercategories)) {
+    if(this.isJson(this.usercategories)) {
       this.UserCategoryArray= JSON.parse(this.usercategories);
     }
+    if(this.UserCategoryArray == null){
+      this.UserCategoryArray = new Array();
+    }
+
+
+
     if (this.isJson(this.categories)) {
       CategoryComponent.listCategories = JSON.parse(this.categories);
       this.SubCategoryObj = new SubCategoryComponent(this.e, this.http);
@@ -49,12 +52,14 @@ export class CategoryComponent {
   }
 
   onDel(id) {
-    this.http.get('app/ExpenseType/ControllerActions.php?deleteusercategoryid=' + id).map((res: Response) => res.text()).subscribe(data => {
-    }, error => {
-    });
-    for (var key in this.UserCategoryArray) {
-      if (this.UserCategoryArray[key].id == id) {
-        this.UserCategoryArray.splice(key, 1);
+    if(LoginComponent.getUserID()) {
+      var Observables = this.e.DeleteCategory(id);
+      Observables.subscribe((res => {
+      }));
+      for (var key in this.UserCategoryArray) {
+        if (this.UserCategoryArray[key].id == id) {
+          this.UserCategoryArray.splice(key, 1);
+        }
       }
     }
   }
@@ -74,11 +79,13 @@ export class CategoryComponent {
   }
 
   onSubmit(value) {
-    this.http.get('app/ExpenseType/ControllerActions.php?a=addcategorytype&user_id=3&name=' + value.name).map((res: Response) => res.text()).subscribe(data => {
-      this.SubCategoryObj.addCategory(data.trim(), value.name);
-      this.UserCategoryArray.push({id: data.trim(), name: value.name});
-    }, error => {
-    });
+    if(LoginComponent.getUserID()) {
+      var Observables = this.e.AddCategory(LoginComponent.getUserID(), value.name);
+      Observables.subscribe((res => {
+        this.SubCategoryObj.addCategory(res.text().trim(), value.name);
+        this.UserCategoryArray.push({id: res.text().trim(), name: value.name});
+      }));
+    }
   }
 
 }

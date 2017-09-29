@@ -1,9 +1,5 @@
 <?php
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
+session_start();
 require_once( __DIR__ .'/Psr4AutoloaderClass.php');
 
 $loader = new Psr4AutoloaderClass();
@@ -27,14 +23,26 @@ $loader->loadClass("\Expense");
 $instance = \Db\DB::getInstance();
 $pdo_dbh = $instance->getConnection();
 
-$categories = \Category\Category::getAllCategory();
 
-$user = new \User\User();
-$usercategories = $user->getUserCategory();
-$usersubcategories = $user->getUserSubCategory();
-$userparameters = $user->getAllUsersParamters();
+if(!empty($_SESSION['login']['id'])){
+  $user_id = $_SESSION['login']['id'];
+  $user = new \User\User($user_id);
+  $categories = $user->getAllCategory();
+  $usercategories = $user->getUserCategory();
+  $usersubcategories = $user->getUserSubCategory();
+  $userparameters = $user->getAllUsersParamters();
+  $expenses = $user->getAllExpenses();
+  $totalMoney = $user->getTotalMoneySpent();
+  $totalRecords = $user->getTotalNumberofRecords();
+}
+else{
+  $nTags = \Expense\Expense::getAllTags();
+  $nUsers = \Expense\Expense::getAllUsers();
+  $nExpenses  = \Expense\Expense::getExpenses();
+  $nRecords = \Expense\Expense::getRecords();
+}
 
-$expenses = \Expense\Expense::getAllExpenses();
+
 
 
 

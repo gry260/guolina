@@ -1,3 +1,8 @@
+
+
+
+
+
 <div class="card" data-exclude="xs,sm,lg">
     <div class="card-header bordered">
         <div class="header-block">
@@ -7,7 +12,7 @@
             </a>
         </div>
         <div class="header-block pull-right"><label class="search">
-                <input class="search-input" placeholder="search...">
+                <input class="search-input" (click)="s.toggle()" name="dp" ngbDatepicker #s="ngbDatepicker" placeholder="search...">
                 <i class="fa fa-search search-icon"></i>
             </label>
             <div class="pagination"><a href="" class="btn btn-primary btn-sm rounded">
@@ -18,6 +23,7 @@
         </div>
     </div>
     <div class="table-responsive">
+
         <table class="table table-bordered table-sm table-hover">
             <thead>
             <tr>
@@ -81,7 +87,7 @@
             <div class="d-flex">
                 <div class="form-group">
                     <label>
-                        Title
+                        Tags
                         <input type="text" class="form-control-sm form-control" formControlName="name"
                                placeholder="name"
                                (keyup)="OnNameChange(name.value)" #name>
@@ -95,11 +101,11 @@
                     </label>
                 </div>
                 <div class="form-group ml-2">
-                    <label>
-                        Date Purchased
-                        <input type="text" class="form-control-sm form-control" formControlName="date"
-                               placeholder="date" #date>
-                    </label>
+                    <label style="margin-bottom: 0px;">
+                        Date Purchased  </label>
+                        <input type="text"  ngbDatepicker ngbDatepicker #date="ngbDatepicker"  (click)="date.toggle()" class="form-control-sm form-control" formControlName="date"
+                               placeholder="date">
+
                 </div>
             </div>
             <div class="d-flex">

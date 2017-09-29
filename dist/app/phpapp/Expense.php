@@ -62,30 +62,55 @@ class Expense
     return $this->_price;
   }
 
-
-  public static function getAllExpenses()
+  public static function getRecords()
   {
-    global $pdo_dbh;
-    $q = ' SELECT *, ifnull(c.id, uc.id) as category_id, ifnull(s.id, us.id) as subcategory_id, 
-ifnull(c.name, uc.name) as category_name, ifnull(s.name, us.name) as subcategory_name, ue.id as id,
-ue.name as name, ue.user_id as user_id
- FROM chicheng.users_expense ue
-left join chicheng.category c on ue.category_id = c.id
-left join chicheng.subcategory s on ue.subcategory_id = s.id
-left join chicheng.user_category uc on uc.id = ue.user_category_id
-left join chicheng.user_subcategory us on ue.user_subcategory_id = us.id
-where ue.user_id =3; ';
+    global  $pdo_dbh;
+    $q = 'SELECT count(*) as records FROM chicheng.users_expense ';
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
     $count = $sth->rowCount();
     if($count > 0)  {
-      $res = array();
-      for($i=0; $i<$count; $i++)  {
-        $result = $sth->fetch(\PDO::FETCH_ASSOC);
-        $res[] = $result;
-      }
-      return $res;
+      $result = $sth->fetch(\PDO::FETCH_ASSOC);
+      return $result['records'];
     }
+  }
+
+  public static function getExpenses()
+  {
+    global  $pdo_dbh;
+    $q = ' SELECT sum(price) as price FROM chicheng.users_expense  ';
+    $sth = $pdo_dbh->prepare($q);
+    $sth->execute();
+    $count = $sth->rowCount();
+    if($count > 0)  {
+      $result = $sth->fetch(\PDO::FETCH_ASSOC);
+      return $result['price'];
+    }
+  }
+
+  public static function getAllUsers()
+  {
+    global  $pdo_dbh;
+    $q = ' select count(*) as users FROM chicheng.users;  ';
+    $sth = $pdo_dbh->prepare($q);
+    $sth->execute();
+    $count = $sth->rowCount();
+    if($count > 0)  {
+      $result = $sth->fetch(\PDO::FETCH_ASSOC);
+      return $result['users'];
+    }
+  }
+
+  public static function getAllTags()
+  {
+    global  $pdo_dbh;
+    $q = ' SELECT * FROM chicheng.users_expense
+where name is not null and name != ""
+group by name  ';
+    $sth = $pdo_dbh->prepare($q);
+    $sth->execute();
+    $count = $sth->rowCount();
+    return $count;
   }
 
 }

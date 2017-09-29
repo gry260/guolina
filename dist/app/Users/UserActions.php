@@ -1,15 +1,24 @@
 <?php
 /**
  */
+
+
+require_once('../Psr4AutoloaderClass.php');
+$parameters = json_decode(file_get_contents('php://input'), true);
+$loader = new Psr4AutoloaderClass();
+$loader->register();
+
+$loader->addNamespace('\User', $_SERVER['DOCUMENT_ROOT'] . '/dist/app/phpapp');
+$loader->loadClass("\User");
+
 require_once('../init.php');
 $instance = \Db\DB::getInstance();
 $pdo_dbh = $instance->getConnection();
-session_start();
 
-if(!empty($_POST['register'])){
+if(!empty($parameters['type']) && $parameters['type'] == 'register'){
   $d = array('username', 'password');
   foreach($d as $key => $v){
-    $data[$v] = htmlentities($_POST[$v], ENT_NOQUOTES);
+    $data[$v] = htmlentities($parameters[$v], ENT_NOQUOTES);
     if (strpos($v, 'password') !== false) {
       $data[$v] = md5($data[$v]);
     }
@@ -17,21 +26,23 @@ if(!empty($_POST['register'])){
   $data['user_key']= hash('crc32', microtime(true) . mt_rand() . $data['username']);
   $loader->loadClass("Db\DbLayer");
   $types = array('username'=>PDO::PARAM_STR, 'password'=>PDO::PARAM_STR, 'user_key'=>PDO::PARAM_STR);
-  \Db\DbLayer\DbLayer::insert('chicheng.users', $data, $types);
+  $_SESSION['login']['id'] = \User\User::AddUser($data, $types);
+  echo  $_SESSION['login']['id'];
 }
 
-if(!empty($_POST['Login'])) {
+if(!empty($parameters['type']) && $parameters['type'] == 'login') {
   $d = array('username', 'password');
   foreach($d as $key => $v) {
-    $data[$v] = htmlentities($_POST[$v], ENT_NOQUOTES);
+    $data[$v] = htmlentities($parameters[$v], ENT_NOQUOTES);
     if (strpos($v, 'password') !== false) {
       $data[$v] = md5($data[$v]);
     }
   }
-  $loader->addNamespace('\User', $_SERVER['DOCUMENT_ROOT'].'/app/phpapp');
-  $loader->loadClass("User\User");
-  $_SESSION['login'] = \User\User::authenticate($data['username'], $data['password']);
+  echo json_encode($_SESSION['login'] = \User\User::authenticate($data['username'], $data['password']));
 }
 
-header("Location:". $_SERVER['DOCUMENT_ROOT']);
-exit;
+if(!empty($parameters['type']) && $parameters['type'] == 'logout') {
+  if(isset($_SESSION['login'])) {
+    unset($_SESSION['login']);
+  }
+}

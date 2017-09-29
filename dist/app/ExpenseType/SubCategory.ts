@@ -5,6 +5,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 import {ExpenseService} from "../services/expense";
 import {CategoryComponent} from "app/ExpenseType/Category";
+import {LoginComponent} from "app/Users/Login.components";
 
 @Component({
   selector: 'crudSubcategory',
@@ -40,15 +41,16 @@ export class SubCategoryComponent {
         this.UserSubCategoryDbArray.push({name: k, id: this.userSubCategories[k][0].category_id, data: temp});
       }
     }
+    this.userSubCategories == null ? this.userSubCategories = new Array() : false;
     this.listCategories = CategoryComponent.get();
     this.categorySubTypeForm = new FormGroup({
       category_obj: new FormControl(''),
-      name: new FormControl('poke'),
+      name: new FormControl(''),
     });
   }
 
   onDel(id) {
-    this.http.get('app/ExpenseType/ControllerActions.php?deleteusersubcategoryid=' + id).map((res: Response) => res.text()).subscribe(data => {
+    this.expenseServices.DeleteSubCategory(id).subscribe(data => {
       for (var k in this.UserSubCategoryDbArray) {
         for (var j in this.UserSubCategoryDbArray[k].data) {
           if (this.UserSubCategoryDbArray[k].data[j].id == id) {
@@ -56,33 +58,42 @@ export class SubCategoryComponent {
           }
         }
       }
-    }, error => {
     });
+
   }
 
   onSubmit(value, v) {
-    this.expenseServices.addExpenseSubCategoryType({
-      name: value.name,
-      category_id: value.category_obj.id,
-      type: value.category_obj.t,
-    }).subscribe(data => {
-      var find = false;
-      for (var k in this.UserSubCategoryDbArray) {
-        if (value.category_obj.id == this.UserSubCategoryDbArray[k].id) {
-           this.UserSubCategoryDbArray[k].data.push({id: data.trim(), subcategory_name: value.name, category_id: value.category_obj.id});
-           find = true;
+    if(LoginComponent.getUserID()) {
+      this.expenseServices.AddExpenseSubCategoryType({
+        name: value.name,
+        category_id: value.category_obj.id,
+        type: value.category_obj.t,
+      }, LoginComponent.getUserID()).subscribe(data => {
+        console.log(data.text());
+        var find = false;
+        for (var k in this.UserSubCategoryDbArray) {
+          if (value.category_obj.id == this.UserSubCategoryDbArray[k].id) {
+            this.UserSubCategoryDbArray[k].data.push({
+              id: data.text().trim(),
+              subcategory_name: value.name,
+              category_id: value.category_obj.id
+            });
+            find = true;
+          }
         }
-      }
-      if(find == false){
-        this.UserSubCategoryDbArray.push({id: value.category_obj.id, name: value.category_obj.name, data:[{
-          id: data.trim(),
-          subcategory_name: value.name,
-          category_id: value.category_obj.id
-        }]});
-      }
-    }, error => {
-      console.log(error.json());
-    });
+        if (find == false) {
+          this.UserSubCategoryDbArray.push({
+            id: value.category_obj.id, name: value.category_obj.name, data: [{
+              id: data.text().trim(),
+              subcategory_name: value.name,
+              category_id: value.category_obj.id
+            }]
+          });
+        }
+      }, error => {
+        console.log(error.json());
+      });
+    }
   }
 
   addCategory(categoryID, Name) {
