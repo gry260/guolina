@@ -70,7 +70,8 @@ if (!empty($parameters['a']) && ($parameters['a'] == 'addexpense' || $parameters
     'id' => \PDO::PARAM_INT,
     'user_category_id' => \PDO::PARAM_INT, 'date_entered' => \PDO::PARAM_STR,
     'category_id' => \PDO::PARAM_INT, 'user_category_id' => \PDO::PARAM_INT, 'user_subcategory_id'=>\PDO::PARAM_INT);
-  $u = new \User\User();
+
+  $u = new \User\User($parameters['user_id']);
   if($parameters['a'] == 'addexpense') {
     echo $u->AddExpense($data, $types);
   }

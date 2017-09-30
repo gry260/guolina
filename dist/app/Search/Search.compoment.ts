@@ -2,7 +2,7 @@ import {Component, Input, Directive, Pipe, ElementRef, ViewChild, ViewChildren} 
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import {ExpenseService} from "../services/expense";
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
-
+import {LoginComponent} from "app/Users/Login.components";
 
 const now = new Date();
 
@@ -27,6 +27,8 @@ export class SearchComponent {
     Reports = new Array();
     model:NgbDateStruct;
     date:{year: number, month: number};
+
+    TypeLabels = ['Category(s)', 'Subcategory(s)', 'Tag(s)', 'Price(s)', 'Dates'] ;
 
     labels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
     data:number[] = [350, 450, 100];
@@ -163,45 +165,55 @@ export class SearchComponent {
                 }
             }
         }
+
         this.SearchReport(this.Options);
     }
 
     SearchReport(options) {
-        this.Reports = new Array();
-        var Observables = this.ExpenseServices.SearchReports(options);
-        Observables.subscribe((res => {
-            if (res._body) {
-                var temp = res.json();
-                var tempCount = 0;
-                var total = new Array();
-                for (var k in temp) {
-                    total[k] = 0;
-                    for (var i in temp[k]) {
-                        temp[k][i].count = !temp[k][i].count ?  0 : temp[k][i].count.trim();
-                        total[k] += parseInt(temp[k][i].count);
+        if(LoginComponent.getUserID()) {
+            this.Reports = new Array();
+            options.user_id = LoginComponent.getUserID();
+            var Observables = this.ExpenseServices.SearchReports(options);
+            Observables.subscribe((res => {
+               // console.log(res.text());
+               // return;
+                if (res._body) {
+                    var temp = res.json();
+                    console.log(temp);
+                    var tempCount = 0;
+                    var total = new Array();
+                    for (var k in temp) {
+                        total[k] = 0;
+                        for (var i in temp[k]) {
+                            temp[k][i].count = !temp[k][i].count ? 0 : temp[k][i].count.trim();
+                            total[k] += parseInt(temp[k][i].count);
+                        }
+                        tempCount++;
                     }
-                    tempCount++;
-                }
-                var tempCount = 0;
-                for (var k in temp) {
-                    this.label[tempCount] = new Array();
-                    this.dataSet[tempCount] = new Array();
-                    for (var i in temp[k]) {
-                        temp[k][i].name = !temp[k][i].name ?  '' : temp[k][i].name.trim();
-                        temp[k][i].count = !temp[k][i].count ?  '' : temp[k][i].count.trim();
-                        this.label[tempCount].push(temp[k][i].name.trim());
-                        this.dataSet[tempCount].push( ((temp[k][i].count.trim()/total[k]) * 100).toFixed(2) );
+                    var tempCount = 0;
+                    for (var k in temp) {
+                        this.label[tempCount] = new Array();
+                        this.dataSet[tempCount] = new Array();
+                        for (var i in temp[k]) {
+                            temp[k][i].name = !temp[k][i].name ? '' : temp[k][i].name.trim();
+                            temp[k][i].count = !temp[k][i].count ? '' : temp[k][i].count.trim();
+                            this.label[tempCount].push(temp[k][i].name.trim());
+                            this.dataSet[tempCount].push(((temp[k][i].count.trim() / total[k]) * 100).toFixed(2));
+                        }
+                        tempCount++;
+                        this.Reports.push({name: k, data: temp[k]});
                     }
-                    tempCount++;
-                    this.Reports.push({name: k, data: temp[k]});
                 }
-            }
-        }));
+                else{
+                    alert('sdfadsf');
+                }
+            }));
+        }
     }
 
     OnClickUpdateName(name) {
         var that = this;
-        if (name.length > 2) {
+        if (name.length > 0) {
             this.Options.name = name;
         }
         else if (name.length == 0) {

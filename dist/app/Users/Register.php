@@ -1,6 +1,6 @@
 <button type="button" class="btn btn-primary" style="margin-right: 225px;" placement="bottom"
         [ngbPopover]="popContent">
-  Sign Up</button>
+ <i class="fa fa-registered fa-lg"></i> Sign Up</button>
 
 <ng-template #popContent>
   <div class="card sameheight-item sales-breakdown" style="border-radius: 5px; width:316px; height: auto;" data-exclude="xs,sm,lg">

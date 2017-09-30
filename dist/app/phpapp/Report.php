@@ -207,11 +207,11 @@ group by  concat(date_format(e.date, "%M"), ", ", year(e.date)) ';
     }
 
     if (!empty(self::$_parameters['from'])) {
-      self::$_query .= ' and e.date >=' . self::$_parameters['from'];
+      self::$_query .= ' and e.date >="' . self::$_parameters['from'].'"';
     }
 
     if (!empty(self::$_parameters['end'])) {
-      self::$_query .= ' and e.date <=' . self::$_parameters['end'];
+      self::$_query .= ' and e.date <="' . self::$_parameters['end'].'"';
     }
 
   }

@@ -6,109 +6,105 @@
   </div>
   <div class="card-block">
     <div class="row">
-      <div class="col-2" *ngFor="let item of label; let i = index">
+      <div class="col-4 mt-1" *ngFor="let item of label; let i = index">
+          <label><i class="fa fa-pie-chart fa-lg"></i> Count Percentages By {{ TypeLabels[i]  }}</label>
         <canvas baseChart [labels]="item" [data]="dataSet[i]" [colors]="colorsUndefined" [chartType]="type"></canvas>
       </div>
     </div>
 
-    <h4><i class="fa fa-filter"></i>&nbsp;Filter</h4>
-    <div class="d-flex">
-      <section class="section" style="margin-top: 15px;">
-        <ul *ngFor="let item of p; let i = index" #category>
-          <input type="checkbox" #ccategory_checkbox
-                 (click)="OnClickUpdateCategory(item.category_id, item.user_category_id, i, ccategory_checkbox)"/>
-          {{ item.name }}
-          <div *ngIf="p3[i]" #sc3>
-            <li *ngFor="let s of p3[i]; let j = index" style="margin-left: 50px;">
-              <input type="checkbox" #subcategory
-                     (click)="OnCLickUpdateSubCategory(item.category_id, item.user_category_id,  s.id, s.type, i, subcategory)"/>
-              {{s.name}}
-            </li>
+    <h4 style="margin-top:15px;"><i class="fa fa-filter"></i>&nbsp;Filter</h4>
+    <div class="row">
+        <div class="ml-1 col-4">
+            <label>
+                Category(s) and Subcategory(s)
+                <ul *ngFor="let item of p; let i = index" #category>
+                    <input type="checkbox" #ccategory_checkbox
+                           (click)="OnClickUpdateCategory(item.category_id, item.user_category_id, i, ccategory_checkbox)"/>
+                    {{ item.name }}
+                    <div *ngIf="p3[i]" #sc3>
+                        <li *ngFor="let s of p3[i]; let j = index" style="margin-left: 50px;">
+                            <input type="checkbox" #subcategory
+                                   (click)="OnCLickUpdateSubCategory(item.category_id, item.user_category_id,  s.id, s.type, i, subcategory)"/>
+                            {{s.name}}
+                        </li>
+                    </div>
+                </ul>
+            </label>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <label class="form-control-label">Tag
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-tags"></i></span>
+                    <input type="text" class="form-control" name="name"
+                           (keyup)="OnClickUpdateName(name.value)" #name/>
+                </div>
+            </label>
           </div>
-        </ul>
-      </section>
-      <div class="form-group ml-3">
-        <label class="form-control-label">Tag
-          <div class="input-group" style="width: 20%;">
-            <span class="input-group-addon"><i class="fa fa-tags"></i></span>
-          <input type="text" class="form-control" name="name"
-                 (keyup)="OnClickUpdateName(name.value)" #name/>
+        </div>
+
+
+        <div class="col-3 flex-row">
+            <div class="form-group" style="width:100%; margin-right:25px;">
+                <label>Price
+                    <select class="form-control" name="poperator1" #poperator1 style="width:150%;">
+                        <option>≈</option>
+                        <option>=</option>
+                        <option><</option>
+                        <option>></option>
+                    </select>
+                </label>
             </div>
-        </label>
-      </div>
-    </div>
-    <div class="d-flex">
-      <div class=" ml-2">
-        <label>Price
-          <select class="form-control" name="poperator1" #poperator1>
-            <option>≈</option>
-            <option>=</option>
-            <option><</option>
-            <option>></option>
-          </select>
-        </label>
-      </div>
-      <div class=" ml-1">
-        <label>&nbsp;
-          <div class="input-group" style="width: 20%;">
-            <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-          <input type="text" class="form-control" name="price1" #price1
-                 (input)="OnClickUpdatePrice(poperator1.value, price1.value, 0)"/>
+            <div class="form-group">
+                    <label class="form-control-label">&nbsp;
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+                            <input type="text" class="form-control" name="price1" #price1
+                                   (input)="OnClickUpdatePrice(poperator1.value, price1.value, 0)"/>
+                        </div>
+                    </label>
+
             </div>
-        </label>
+
+        </div>
+        </div>
+
+
+      <div class="row">
+          <div class="ml-1 col-4">
+              <label>Last Time
+                  <select class="form-control" name="last_name" #lasttime
+                          (change)="OnChangeLastTime(lasttime.value)">
+                      <option></option>
+                      <option>This Month</option>
+                      <option>Last Month</option>
+                      <option>Last 3 Months</option>
+                      <option>Last 6 Months</option>
+                      <option>This Year</option>
+                      <option>Last Year</option>
+                  </select>
+              </label>
+          </div>
+
+          <div class="col-3">
+              <label class="control-label" style="margin-bottom: 0px;">After </label>
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+              <input type="text" class="form-control" (click)="from.toggle()" name="dp" ngbDatepicker
+                     #from="ngbDatepicker" ngModel (ngModelChange)="onDateFromChange($event)"/>
+              </div>
+          </div>
+          <div class="col-3">
+              <label style="margin-bottom: 0px;">Until</label>
+              <div class="input-group">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+              <input class="control-label" type="text" class="form-control" ng-change="selectDate(dt)" ngModel
+                     (ngModelChange)="onDateUntilChange($event)" (click)="end.toggle()" name="dp" ngbDatepicker
+                     #end="ngbDatepicker"/>
+              </div>
+          </div>
       </div>
 
-        <label>&nbsp;
-          <h5>And</h5>
-        </label>
-
-      <div class="">
-        <label>&nbsp;
-          <select class="form-control" name="poperator2" #poperator2>
-            <option>≈</option>
-            <option>=</option>
-            <option><</option>
-            <option>></option>
-          </select>
-        </label>
-      </div>
-      <div class="ml-1">
-        <label>&nbsp;
-          <div class="input-group" style="width: 20%;">
-            <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-          <input type="text" class="form-control" name="price2" #price2
-                 (keyup)="OnClickUpdatePrice(poperator2.value, price2.value, 1)"/>
-            </div>
-        </label>
-      </div>
-    </div>
-    <div class="d-flex">
-      <div class=" ml-2">
-        <label>Last Time
-          <select class="form-control" name="last_name" #lasttime
-                  (change)="OnChangeLastTime(lasttime.value)">
-            <option></option>
-            <option>This Month</option>
-            <option>Last Month</option>
-            <option>Last 3 Months</option>
-            <option>Last 6 Months</option>
-            <option>This Year</option>
-            <option>Last Year</option>
-          </select>
-        </label>
-      </div>
-      <div class=" ml-2">
-        <label style="margin-bottom: 0px;">From </label>
-        <input type="text" class="form-control" (click)="from.toggle()" name="dp" ngbDatepicker
-               #from="ngbDatepicker" ngModel (ngModelChange)="onDateFromChange($event)"/>
-      </div>
-      <div class=" ml-1">
-        <label style="margin-bottom: 0px;">Until</label>
-        <input type="text" class="form-control" ng-change="selectDate(dt)" ngModel
-               (ngModelChange)="onDateUntilChange($event)" (click)="end.toggle()" name="dp" ngbDatepicker
-               #end="ngbDatepicker"/>
-      </div>
-    </div>
   </div>
 </div>
 

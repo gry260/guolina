@@ -121,7 +121,6 @@ export class ExpenseComponent {
             price: new FormControl(),
             date: new FormControl(''),
             comment: new FormControl(''),
-            id: new FormControl(''),
         });
         this.ListCategories = CategoryComponent.get();
     }
@@ -148,6 +147,7 @@ export class ExpenseComponent {
     }
 
     onSubmit(c, subcategory_obj, name, price, date, comment, id) {
+
         var SubmittedObj = {
             user_id: LoginComponent.getUserID(),
             category_name: c.options[c.selectedIndex].innerHTML,

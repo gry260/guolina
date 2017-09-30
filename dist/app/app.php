@@ -70,7 +70,7 @@ require_once('./init.php');
           <ngb-tab>
             <template ngbTabTitle><b>Report(s)</b></template>
             <template ngbTabContent>
-            <div class="d-flex">
+            <div class="d-flex" style="margin-bottom: 125px;">
               <div class="col-12">
               <search parameters='<?php echo json_encode($userparameters); ?>'></search>
               </div>
