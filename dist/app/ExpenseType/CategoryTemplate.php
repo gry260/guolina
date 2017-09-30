@@ -1,42 +1,26 @@
-<div class="card" data-exclude="xs,sm,lg" style="padding-top: 15px; padding-bottom: 0px;">
-
-  <div style="display: block">
-
-    <!--
-    <canvas baseChart
-            [data]="doughnutChartData"
-            [labels]="doughnutChartLabels"
-            [chartType]="doughnutChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
-
-            -->
-  </div>
-
-
+<div class="card card-primary" data-exclude="xs,sm,lg" style="padding-top: 15px; padding-bottom: 0px;">
   <div class="card-header bordered">
     <div class="header-block">
-      <h3 class="title">Manage Your Category(s)</h3>
+      <h3 class="title"><i class="fa fa-edit" style="margin-top:3px;"></i>&nbsp;Add or Delete Category(s)</h3>
     </div>
   </div>
   <div class="card-block" style="padding-bottom: 0px;">
-      <form [formGroup]="CategoryTypeForm" #eform="ngForm" (ngSubmit)="onSubmit(eform.value)" >
-        <div class="d-flex">
-      <div class="form-group">
-        <label> Add a Category
-    <input type="text" class="form-control form-control-sm" formControlName="name">
-        </label>
-      </div>
-      <div class="form-group">
-        <label>&nbsp;
-          <input type="submit" size="5" class="form-control btn btn-sm btn-primary rounded"  />
-        </label>
+    <form [formGroup]="CategoryTypeForm" #eform="ngForm" (ngSubmit)="onSubmit(eform.value)">
+      <div class="d-flex">
+        <div class="form-group">
+          <label>Category
+            <input type="text" class="form-control" formControlName="name" placeholder="Category Name">
+          </label>
         </div>
-          </div>
-        </form>
-
+        <div class="form-group ml-1">
+          <label>&nbsp;
+            <input type="submit" value="Add" size="5" class="form-control btn btn-primary rounded"/>
+          </label>
+        </div>
+      </div>
+    </form>
     <ul class="item-list">
-      <li class="item" *ngFor="let item of UserCategoryArray">
+      <li class="item" *ngFor="let item of UserCategoryArray" style="height:35px;">
         <div class="item-row">
           <div class="item-col item-col-title"><label>
               <span>{{ item.name }}</span>

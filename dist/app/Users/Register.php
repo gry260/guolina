@@ -10,21 +10,26 @@
       </div>
       <hr />
     </div>
-    <form method="post" action="./adfsdf.php"  #f="ngForm" (ngSubmit)="onSubmit(f.value)" [formGroup]="e">
-    <div class="card-block">
-      <div class="form-group"><label class="control-label" style="margin-bottom: 0px;">User Name: </label>
-        <input type="text" class="form-control boxed form-control-sm" formControlName="username" />
-      </div>
-      <div class="form-group"><label class="control-label" style="margin-bottom: 0px;">Password: </label>
-        <input type="password" class="form-control boxed form-control-sm" formControlName="password"/>
-      </div>
-      <div class="form-group"><label class="control-label" style="margin-bottom: 0px;">Confirm Password: </label>
-        <input type="password" class="form-control boxed form-control-sm" formControlName="confirm_password"/>
-      </div>
+    <form id="signup-form" action="/index.html" method="POST" novalidate="novalidate"  #f="ngForm" (ngSubmit)="onSubmit(f.value)" [formGroup]="e">
       <div class="form-group">
-        <input type="submit" class="btn btn-success btn-sm" />
+        <label for="firstname">Username</label>
+        <div class="row">
+          <div class="col-sm-12"> <input type="text" formControlName="username" class="form-control underlined" name="username" id="username" placeholder="Enter username" required="" aria-required="true"> </div>
+        </div>
       </div>
-    </div>
+      <div class="form-group"> <label for="firstname">Name</label>
+        <div class="row">
+          <div class="col-sm-6"> <input type="text" formControlName="first_name" class="form-control underlined" name="firstname" id="firstname" placeholder="Enter firstname" required="" aria-required="true"> </div>
+          <div class="col-sm-6"> <input type="text" formControlName="last_name" class="form-control underlined" name="lastname" id="lastname" placeholder="Enter lastname" required="" aria-required="true"> </div>
+        </div>
+      </div>
+      <div class="form-group"> <label for="password">Password</label>
+        <div class="row">
+          <div class="col-sm-6"> <input type="password" formControlName="password" class="form-control underlined" name="password" id="password" placeholder="Enter password" required="" aria-required="true"> </div>
+          <div class="col-sm-6"> <input type="password"  formControlName="confirm_password" class="form-control underlined" name="retype_password" id="retype_password" placeholder="Re-type password" required="" aria-required="true"> </div>
+        </div>
+      </div>
+      <div class="form-group" style="padding-bottom:15px; padding-right:10px"> <button type="submit" class="btn btn-block btn-primary">Sign Up</button> </div>
     </form>
   </div>
 </ng-template>

@@ -85,13 +85,13 @@ if (!empty($parameters['a']) && ($parameters['a'] == 'addexpense' || $parameters
 
 if(!empty($parameters['deleteusercategoryid'])){
   $id = trim($parameters['deleteusercategoryid']);
-  $u = new \User\User();
+  $u = new \User\User($_SESSION['id']);
   $u->DeleteCategory($parameters['deleteusercategoryid']);
 }
 
 if(!empty($parameters['deleteusersubcategoryid'])){
   $id = trim($parameters['deleteusersubcategoryid']);
-  $u = new \User\User();
+  $u = new \User\User($_SESSION['id']);
   $u->DeleteSubCategory($id);
 }
 
@@ -108,10 +108,10 @@ if(!empty($parameters['cid'])){
   }
   else{
     $cid = $parameters['cid'];
-    $loader->addNamespace('\Report', $_SERVER['DOCUMENT_ROOT'].'/app/phpapp');
+    $loader->addNamespace('\Report', $_SERVER['DOCUMENT_ROOT'].'/dist/app/phpapp');
     $loader->loadClass("Report\Report");
-    $report = new \Report\Report(3, NULL);
-    echo json_encode($report->SearchCategoryKeywords($cid));
+    $u = new \User\User($_SESSION['login']['id']);
+    echo json_encode($u->SearchCategoryKeywords($cid));
   }
 }
 

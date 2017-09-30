@@ -57,9 +57,11 @@ export class SubCategoryComponent {
             this.UserSubCategoryDbArray[k].data.splice(j, 1);
           }
         }
+        if(this.UserSubCategoryDbArray[k].data.length == 0){
+          this.UserSubCategoryDbArray.splice(k, 1);
+        }
       }
     });
-
   }
 
   onSubmit(value, v) {
@@ -69,7 +71,6 @@ export class SubCategoryComponent {
         category_id: value.category_obj.id,
         type: value.category_obj.t,
       }, LoginComponent.getUserID()).subscribe(data => {
-        console.log(data.text());
         var find = false;
         for (var k in this.UserSubCategoryDbArray) {
           if (value.category_obj.id == this.UserSubCategoryDbArray[k].id) {

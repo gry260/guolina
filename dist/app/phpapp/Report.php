@@ -29,22 +29,6 @@ Class Report
     echo self::$_user_id;
   }
 
-  public function SearchCategoryKeywords($cid)
-  {
-    global $pdo_dbh;
-    $q = 'SELECT trim(word) as word FROM chicheng.keywords_by_category where category_id ='.$cid;
-    $res = array();
-    $sth = $pdo_dbh->prepare($q);
-    $sth->execute();
-    $count = $sth->rowCount();
-    if ($count > 0) {
-      for ($i = 0; $i < $count; $i++) {
-        $res[] = $sth->fetch(\PDO::FETCH_ASSOC);
-      }
-      return $res;
-    }
-  }
-
   public function GetResults()
   {
     global $pdo_dbh;

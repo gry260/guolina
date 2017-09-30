@@ -16,7 +16,7 @@ $instance = \Db\DB::getInstance();
 $pdo_dbh = $instance->getConnection();
 
 if(!empty($parameters['type']) && $parameters['type'] == 'register'){
-  $d = array('username', 'password');
+  $d = array('username', 'password', 'first_name', 'last_name');
   foreach($d as $key => $v){
     $data[$v] = htmlentities($parameters[$v], ENT_NOQUOTES);
     if (strpos($v, 'password') !== false) {
@@ -25,7 +25,8 @@ if(!empty($parameters['type']) && $parameters['type'] == 'register'){
   }
   $data['user_key']= hash('crc32', microtime(true) . mt_rand() . $data['username']);
   $loader->loadClass("Db\DbLayer");
-  $types = array('username'=>PDO::PARAM_STR, 'password'=>PDO::PARAM_STR, 'user_key'=>PDO::PARAM_STR);
+  $types = array('username'=>PDO::PARAM_STR, 'password'=>PDO::PARAM_STR, 'last_name'=>PDO::PARAM_STR,
+    'first_name'=>PDO::PARAM_STR, 'user_key'=>PDO::PARAM_STR);
   $_SESSION['login']['id'] = \User\User::AddUser($data, $types);
   echo  $_SESSION['login']['id'];
 }

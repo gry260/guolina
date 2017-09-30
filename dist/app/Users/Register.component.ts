@@ -15,6 +15,8 @@ export class RegisterComponent {
         this.LoginComponent = LoginComponent;
         this.ue = ue;
         this.e = new FormGroup({
+            first_name: new FormControl(''),
+            last_name: new FormControl(''),
             username: new FormControl(''),
             password: new FormControl(''),
             confirm_password: new FormControl(''),

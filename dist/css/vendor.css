@@ -12715,9 +12715,11 @@ button.close {
   background-color: #000;
 }
 
+/*
 .modal-backdrop.fade {
   opacity: 0;
 }
+*/
 
 .modal-backdrop.in {
   opacity: 0.5;
