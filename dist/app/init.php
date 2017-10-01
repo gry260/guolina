@@ -20,6 +20,8 @@ $loader->loadClass("\User");
 $loader->addNamespace('\Expense', $_SERVER['DOCUMENT_ROOT'] . '/dist/app/phpapp');
 $loader->loadClass("\Expense");
 
+
+
 $instance = \Db\DB::getInstance();
 $pdo_dbh = $instance->getConnection();
 

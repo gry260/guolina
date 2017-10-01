@@ -5,11 +5,30 @@
     </div>
   </div>
   <div class="card-block" style="padding-bottom: 0px;">
+      <div class="row justify-content-center" *ngIf="justAdded == true">
+          <div class="alert alert-success" style="background:#dff0d8; width: 100%; color: #3c763d; border: #d0e9c6;">
+              <i class="fa fa-check"></i>&nbsp;
+              <b>
+                Category Added.
+              </b>
+          </div>
+      </div>
+
+      <div class="row justify-content-center" *ngIf="justDeleted == true">
+          <div class="alert alert-success" style="background:#f2dede; width: 100%; color: #a94442; border: #ebcccc;">
+              <i class="fa fa-check"></i>&nbsp;
+              <b>
+                  Category Deleted.
+              </b>
+          </div>
+      </div>
+
+
     <form [formGroup]="CategoryTypeForm" #eform="ngForm" (ngSubmit)="onSubmit(eform.value)">
       <div class="d-flex">
         <div class="form-group">
           <label>Category
-            <input type="text" class="form-control" formControlName="name" placeholder="Category Name">
+            <input type="text"  [(ngModel)]="query" class="form-control" formControlName="name" placeholder="Category Name">
           </label>
         </div>
         <div class="form-group ml-1">

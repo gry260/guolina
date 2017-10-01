@@ -17,6 +17,10 @@ export class SubCategoryComponent {
   expenseServices: ExpenseService;
   listCategories: any;
   http: Http;
+  justAdded: boolean;
+  justDeleted: boolean;
+  query: string;
+
 
   @Input() userSubCategories;
   UserSubCategoryDbArray = new Array();
@@ -25,6 +29,9 @@ export class SubCategoryComponent {
     this.expenseServices = e;
     this.listCategories = CategoryComponent.get();
     this.http = h;
+    this.justAdded = false;
+    this.justDeleted = false;
+    this.query = '';
   }
 
   ngOnInit() {
@@ -61,6 +68,9 @@ export class SubCategoryComponent {
           this.UserSubCategoryDbArray.splice(k, 1);
         }
       }
+
+        this.justDeleted = true;
+        this.justAdded = false;
     });
   }
 
@@ -91,6 +101,11 @@ export class SubCategoryComponent {
             }]
           });
         }
+
+          this.justAdded = true;
+          this.justDeleted = false;
+          this.query = '';
+
       }, error => {
         console.log(error.json());
       });

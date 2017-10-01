@@ -5,7 +5,16 @@
     </div>
   </div>
   <div class="card-block">
-    <div class="row">
+      <div *ngIf="hasResult == false" class="row justify-content-center">
+          <div class="alert alert-danger" style="background:#f2dede; width: 100%; color: #a94442; border: #ebcccc;">
+            <i class="fa fa-warning"></i>&nbsp;
+              <b>
+                  Your Search does not return any results. Please select different filter.
+              </b>
+          </div>
+      </div>
+
+    <div class="row" *ngIf="hasResult == true">
       <div class="col-4 mt-1" *ngFor="let item of label; let i = index">
           <label><i class="fa fa-pie-chart fa-lg"></i> Count Percentages By {{ TypeLabels[i]  }}</label>
         <canvas baseChart [labels]="item" [data]="dataSet[i]" [colors]="colorsUndefined" [chartType]="type"></canvas>
@@ -76,7 +85,7 @@
                   <select class="form-control" name="last_name" #lasttime
                           (change)="OnChangeLastTime(lasttime.value)">
                       <option></option>
-                      <option>This Month</option>
+                      <option selected>This Month</option>
                       <option>Last Month</option>
                       <option>Last 3 Months</option>
                       <option>Last 6 Months</option>

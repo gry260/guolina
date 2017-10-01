@@ -43,7 +43,6 @@ require_once('./init.php');
         <register></register>
         <?php
       }
-
       ?>
     </header>
     <aside class="sidebar">
@@ -51,6 +50,10 @@ require_once('./init.php');
     <article class="content dashboard-page">
       <?php
       if(!empty($_SESSION['login'])) {
+          $loader->addNamespace('\Report', $_SERVER['DOCUMENT_ROOT'].'/dist/app/phpapp');
+          $loader->loadClass("Report\Report");
+          $report = new \Report\Report($user_id, array('last'=>'This Month'));
+          $r = $report->GetResults();
         ?>
         <ngb-tabset>
           <ngb-tab>
@@ -72,7 +75,7 @@ require_once('./init.php');
             <template ngbTabContent>
             <div class="d-flex" style="margin-bottom: 125px;">
               <div class="col-12">
-              <search parameters='<?php echo json_encode($userparameters); ?>'></search>
+              <search parameters='<?php echo json_encode($userparameters); ?>' r='<?php echo json_encode($r); ?>'></search>
               </div>
             </div>
             </template>
@@ -81,6 +84,7 @@ require_once('./init.php');
         <?php
       }
       if (empty($_SESSION['login'])) {
+
         ?>
         <div class="col-6">
           <div class="card sameheight-item stats" data-exclude="xs" style="height: 228px;">
@@ -122,7 +126,7 @@ require_once('./init.php');
                 <div class="col-xs-12 col-sm-6 stat-col">
                   <div class="stat-icon"> <i class="fa fa-dollar"></i> </div>
                   <div class="stat">
-                    <div class="value"> <?php echo $nExpenses; ?> </div>
+                    <div class="value"> <?php echo number_format((float)$nExpenses, 2, '.', '');; ?> </div>
                     <div class="name"> Total Expenses Spent </div>
                   </div> <progress class="progress stat-progress" value="15" max="100">
                     <div class="progress">

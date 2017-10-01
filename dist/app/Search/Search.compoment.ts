@@ -14,6 +14,7 @@ const now = new Date();
 export class SearchComponent {
 
     @Input() parameters;
+    @Input() r;
     @ViewChildren('sc3') s:ElementRef;
     p = new Array();
     p2 = new Array();
@@ -27,6 +28,7 @@ export class SearchComponent {
     Reports = new Array();
     model:NgbDateStruct;
     date:{year: number, month: number};
+    hasResult: boolean;
 
     TypeLabels = ['Category(s)', 'Subcategory(s)', 'Tag(s)', 'Price(s)', 'Dates'] ;
 
@@ -56,6 +58,36 @@ export class SearchComponent {
             last: '',
             from: '',
             end: '',
+        }
+
+        if (this.isJson(this.r)) {
+            var temp = JSON.parse(this.r);
+            var tempCount = 0;
+            var total = new Array();
+            for (var k in temp) {
+                total[k] = 0;
+                for (var i in temp[k]) {
+                    temp[k][i].count = !temp[k][i].count ? 0 : temp[k][i].count.trim();
+                    total[k] += parseInt(temp[k][i].count);
+                }
+                tempCount++;
+            }
+
+            var tempCount = 0;
+            for (var k in temp) {
+                this.label[tempCount] = new Array();
+                this.dataSet[tempCount] = new Array();
+                for (var i in temp[k]) {
+                    temp[k][i].name = !temp[k][i].name ? '' : temp[k][i].name.trim();
+                    temp[k][i].count = !temp[k][i].count ? '' : temp[k][i].count.trim();
+                    this.label[tempCount].push(temp[k][i].name.trim());
+                    this.dataSet[tempCount].push(((temp[k][i].count.trim() / total[k]) * 100).toFixed(2));
+                }
+                tempCount++;
+                this.Reports.push({name: k, data: temp[k]});
+            }
+
+            this.hasResult = true;
         }
 
         if (this.isJson(this.parameters)) {
@@ -175,11 +207,9 @@ export class SearchComponent {
             options.user_id = LoginComponent.getUserID();
             var Observables = this.ExpenseServices.SearchReports(options);
             Observables.subscribe((res => {
-               // console.log(res.text());
-               // return;
                 if (res._body) {
+                    this.hasResult = true;
                     var temp = res.json();
-                    console.log(temp);
                     var tempCount = 0;
                     var total = new Array();
                     for (var k in temp) {
@@ -205,7 +235,7 @@ export class SearchComponent {
                     }
                 }
                 else{
-                    alert('sdfadsf');
+                    this.hasResult = false;
                 }
             }));
         }

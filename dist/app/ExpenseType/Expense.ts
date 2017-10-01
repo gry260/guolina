@@ -34,15 +34,6 @@ import 'rxjs/add/operator/distinctUntilChanged';
 @Injectable()
 export class ExpenseComponent {
 
-    states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
-        'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
-        'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-        'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-        'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-        'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
-        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
-        'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-
     ele:ElementRef;
     SelectedDate:any;
     inputControl:FormControl;
@@ -76,6 +67,10 @@ export class ExpenseComponent {
             .map(term => term.length < 2 ? []
                 : this.keywords.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
+    justAdded : boolean;
+    justDeleted : boolean;
+    justUpdated: boolean;
+
 
     //@Injectable KeyWords;
 
@@ -87,6 +82,9 @@ export class ExpenseComponent {
     constructor(e:ExpenseService, private modalService:NgbModal, private activeModal:NgbActiveModal) {
         this.ExpenseService = e;
         this.IsUpdate = false;
+        this.justAdded = false;
+        this.justDeleted = false;
+        this.justUpdated = false;
     }
 
     open(content, action) {
@@ -179,6 +177,9 @@ export class ExpenseComponent {
                         }
                     }
                 }
+                this.justDeleted = false;
+                this.justAdded = false;
+                this.justUpdated = true;
             }
             else {
                 var Observables = this.ExpenseService.AddExpense(SubmittedObj);
@@ -187,6 +188,9 @@ export class ExpenseComponent {
                     this.ExpensesArray.push(SubmittedObj);
                 }));
                 this.modalRef.close();
+                this.justDeleted = false;
+                this.justAdded = true;
+                this.justUpdated = false;
             }
         }
     }
@@ -216,6 +220,9 @@ export class ExpenseComponent {
     onDelete(id) {
         if (LoginComponent.getUserID()) {
             this.ExpenseService.RemoveExpense({id: id, user_id: LoginComponent.getUserID()}).subscribe(data => {
+                this.justDeleted = true;
+                this.justAdded = false;
+                this.justUpdated = false;
                 for (var i in this.ExpensesArray) {
                     if (this.ExpensesArray[i].id == id) {
                         this.ExpensesArray.splice(i, 1);

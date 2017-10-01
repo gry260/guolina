@@ -24,6 +24,9 @@ export class CategoryComponent {
   static listCategories: any;
   SubCategoryObj: any;
   UserCategoryArray: Array;
+  justAdded: any;
+  justDeleted: any;
+  query: string;
 
 
 
@@ -31,6 +34,9 @@ export class CategoryComponent {
     this.s = s;
     this.e = e;
     this.http = h;
+    this.justAdded = false;
+    this.justDeleted = false;
+    this.query = '';
   }
   ngOnInit() {
     if(this.isJson(this.usercategories)) {
@@ -39,8 +45,6 @@ export class CategoryComponent {
     if(this.UserCategoryArray == null){
       this.UserCategoryArray = new Array();
     }
-
-
 
     if (this.isJson(this.categories)) {
       CategoryComponent.listCategories = JSON.parse(this.categories);
@@ -55,6 +59,8 @@ export class CategoryComponent {
     if(LoginComponent.getUserID()) {
       var Observables = this.e.DeleteCategory(id);
       Observables.subscribe((res => {
+        this.justDeleted = true;
+        this.justAdded = false;
       }));
       for (var key in this.UserCategoryArray) {
         if (this.UserCategoryArray[key].id == id) {
@@ -84,6 +90,9 @@ export class CategoryComponent {
       Observables.subscribe((res => {
         this.SubCategoryObj.addCategory(res.text().trim(), value.name);
         this.UserCategoryArray.push({id: res.text().trim(), name: value.name});
+        this.justAdded = true;
+        this.justDeleted = false;
+        this.query = '';
       }));
     }
   }

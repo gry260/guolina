@@ -52,7 +52,7 @@ uc on e.user_category_id = uc.id
       }
     }
 
-    $subcategory_query = 'SELECT s.id, s.name, count(*)  as count
+    $subcategory_query = 'SELECT s.id, SELECT IF(s.name IS not NULL and s.name != "", s.name, "No Subcategory") as name, count(*)  as count
 FROM chicheng.users_expense e left join chicheng.subcategory 
 s on s.id = e.subcategory_id where e.user_id =' . self::$_user_id . ' ' . self::$_query.'
 and e.subcategory_id is not null group by e.subcategory_id
@@ -74,7 +74,7 @@ group by e.subcategory_id ';
       }
     }
 
-    $name_query = 'SELECT e.name as name, count(*)  as count
+    $name_query = 'SELECT IF(name IS not NULL and name != "", name, "No Tags") as name, count(*)  as count
 FROM chicheng.users_expense e 
 where e.user_id = '.self::$_user_id.' '.self::$_query.' group by SOUNDEX(name)';
 

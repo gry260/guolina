@@ -8,6 +8,32 @@
     </div>
   </div>
   <div class="table-responsive">
+      <div class="row justify-content-center" *ngIf="justAdded == true">
+          <div class="alert alert-success" style="background:#dff0d8; width: 100%; color: #3c763d; border: #d0e9c6;">
+              <i class="fa fa-check"></i>&nbsp;
+              <b>
+                  Recorded Added.
+              </b>
+          </div>
+      </div>
+      <div class="row justify-content-center" *ngIf="justUpdated== true">
+          <div class="alert alert-success" style="background:#dff0d8; width: 100%; color: #3c763d; border: #d0e9c6;">
+              <i class="fa fa-check"></i>&nbsp;
+              <b>
+                  Recorded Updated.
+              </b>
+          </div>
+      </div>
+
+      <div class="row justify-content-center" *ngIf="justDeleted == true">
+          <div class="alert alert-danger" style="background:#f2dede; width: 100%; color: #a94442; border: #ebcccc;">
+              <i class="fa fa-check"></i>&nbsp;
+              <b>
+                  Recorded Deleted.
+              </b>
+          </div>
+      </div>
+
     <table class="table table-striped table-hover">
       <thead>
       <tr>
