@@ -5,11 +5,14 @@
     </div>
   </div>
   <div class="card-block">
+
+      <p class="bg alert-info" style="padding:5px;">
+          <strong>&nbsp;<i class="fa fa-info-circle" aria-hidden="true"> </i>&nbsp; By Default, the report has filtered with in this month only. </strong>
+      </p>
       <div *ngIf="hasResult == false" class="row justify-content-center">
           <div class="alert alert-danger" style="background:#f2dede; width: 100%; color: #a94442; border: #ebcccc;">
             <i class="fa fa-warning"></i>&nbsp;
-              <b>
-                  Your Search does not return any results. Please select different filter.
+              <b>Your Search does not return any results. Please select different filter.
               </b>
           </div>
       </div>

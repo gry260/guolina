@@ -30,7 +30,8 @@ export class SearchComponent {
     date:{year: number, month: number};
     hasResult: boolean;
 
-    TypeLabels = ['Category(s)', 'Subcategory(s)', 'Tag(s)', 'Price(s)', 'Dates'] ;
+    //Dates
+    TypeLabels = ['Category(s)', 'Subcategory(s)', 'Tag(s)', 'Price(s)'] ;
 
     labels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
     data:number[] = [350, 450, 100];
@@ -200,7 +201,6 @@ export class SearchComponent {
                 }
             }
         }
-
         this.SearchReport(this.Options);
     }
 

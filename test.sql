@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `chicheng` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `chicheng`;
+CREATE DATABASE  IF NOT EXISTS `tiandail_chicheng` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `tiandail_chicheng`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
 -- Host: localhost    Database: chicheng

@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32dd3af5-1c48-41e0-a122-6704304378b4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/ExpenseType/Category.ts" afterPath="$PROJECT_DIR$/dist/app/ExpenseType/Category.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/ExpenseType/CategoryTemplate.php" afterPath="$PROJECT_DIR$/dist/app/ExpenseType/CategoryTemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/ExpenseType/Expense.ts" afterPath="$PROJECT_DIR$/dist/app/ExpenseType/Expense.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/ExpenseType/ExpenseTemplate.php" afterPath="$PROJECT_DIR$/dist/app/ExpenseType/ExpenseTemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/ExpenseType/SubCategory.ts" afterPath="$PROJECT_DIR$/dist/app/ExpenseType/SubCategory.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/ExpenseType/SubCategoryTemplate.php" afterPath="$PROJECT_DIR$/dist/app/ExpenseType/SubCategoryTemplate.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/Search/Search.compoment.ts" afterPath="$PROJECT_DIR$/dist/app/Search/Search.compoment.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/Search/Search.php" afterPath="$PROJECT_DIR$/dist/app/Search/Search.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/Users/Login.components.ts" afterPath="$PROJECT_DIR$/dist/app/Users/Login.components.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/Users/Login.php" afterPath="$PROJECT_DIR$/dist/app/Users/Login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/Users/Register.component.ts" afterPath="$PROJECT_DIR$/dist/app/Users/Register.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/Users/Register.php" afterPath="$PROJECT_DIR$/dist/app/Users/Register.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/Users/UserActions.php" afterPath="$PROJECT_DIR$/dist/app/Users/UserActions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/app.php" afterPath="$PROJECT_DIR$/dist/app/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/init.php" afterPath="$PROJECT_DIR$/dist/app/init.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/phpapp/Report.php" afterPath="$PROJECT_DIR$/dist/app/phpapp/Report.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/phpapp/User.php" afterPath="$PROJECT_DIR$/dist/app/phpapp/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/services/user.ts" afterPath="$PROJECT_DIR$/dist/app/services/user.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/index.php" afterPath="$PROJECT_DIR$/dist/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.sql" afterPath="$PROJECT_DIR$/test.sql" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,7 +43,7 @@
       <file leaf-file-name="Login.components.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/Users/Login.components.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-169">
+            <state relative-caret-position="306">
               <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
               <folding />
             </state>
@@ -69,27 +53,41 @@
       <file leaf-file-name="Report.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Report.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="813">
-              <caret line="67" column="20" lean-forward="true" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
+            <state relative-caret-position="748">
+              <caret line="127" column="16" lean-forward="false" selection-start-line="127" selection-start-column="16" selection-end-line="127" selection-end-column="16" />
               <folding>
-                <marker date="1506987079436" expanded="true" signature="677:922" ph="SELECT c.id,... " />
-                <marker date="1506987079436" expanded="true" signature="923:1187" ph="SELECT uc.id... " />
-                <marker date="1506987079436" expanded="true" signature="1504:1827" ph="SELECT s.id,... " />
-                <marker date="1506987079436" expanded="true" signature="1828:2095" ph="SELECT us.id... " />
-                <marker date="1506987079436" expanded="true" signature="2392:2589" ph="SELECT IF(na... " />
-                <marker date="1506987079436" expanded="true" signature="2874:3214" ph="SELECT conca... " />
-                <marker date="1506987079436" expanded="true" signature="3499:3736" ph="SELECT conca... " />
+                <marker date="1506992508075" expanded="true" signature="677:922" ph="SELECT c.id,... " />
+                <marker date="1506992508075" expanded="true" signature="923:1187" ph="SELECT uc.id... " />
+                <marker date="1506992508075" expanded="true" signature="1504:1827" ph="SELECT s.id,... " />
+                <marker date="1506992508075" expanded="true" signature="1828:2095" ph="SELECT us.id... " />
+                <marker date="1506992508075" expanded="true" signature="2392:2589" ph="SELECT IF(na... " />
+                <marker date="1506992508075" expanded="true" signature="2874:3214" ph="SELECT conca... " />
+                <marker date="1506992508075" expanded="true" signature="3506:3743" ph="SELECT conca... " />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Search.compoment.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Search.compoment.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/Search/Search.compoment.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="214" column="23" lean-forward="false" selection-start-line="214" selection-start-column="23" selection-end-line="214" selection-end-column="23" />
+            <state relative-caret-position="-1615">
+              <caret line="29" column="29" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Search.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dist/app/Search/Search.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="83" lean-forward="false" selection-start-line="9" selection-start-column="83" selection-end-line="9" selection-end-column="83" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#390#396#1#HTML" expanded="true" />
+                <element signature="e#449#455#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -154,7 +152,6 @@
         <option value="$PROJECT_DIR$/dist/app/ExpenseType/ControllerActions.php" />
         <option value="$PROJECT_DIR$/dist/app/Search/SearchSubmit.php" />
         <option value="$PROJECT_DIR$/dist/app/Users/Logout.php" />
-        <option value="$PROJECT_DIR$/dist/app/Search/Search.php" />
         <option value="$PROJECT_DIR$/dist/app/ExpenseType/CategoryTemplate.php" />
         <option value="$PROJECT_DIR$/dist/app/ExpenseType/SubCategory.ts" />
         <option value="$PROJECT_DIR$/dist/app/ExpenseType/SubCategoryTemplate.php" />
@@ -173,6 +170,7 @@
         <option value="$PROJECT_DIR$/dist/app/Users/Login.components.ts" />
         <option value="$PROJECT_DIR$/dist/app/Search/Search.compoment.ts" />
         <option value="$PROJECT_DIR$/dist/app/phpapp/Report.php" />
+        <option value="$PROJECT_DIR$/dist/app/Search/Search.php" />
       </list>
     </option>
   </component>
@@ -195,10 +193,9 @@
     <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="590" />
-    <option name="y" value="91" />
-    <option name="width" value="1088" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="181" />
+    <option name="width" value="1499" />
     <option name="height" value="1010" />
   </component>
   <component name="ProjectView">
@@ -307,14 +304,16 @@
       <workItem from="1506980620856" duration="1782000" />
       <workItem from="1506982471596" duration="2107000" />
       <workItem from="1506986509693" duration="1162000" />
+      <workItem from="1506991507639" duration="1059000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41133000" />
+    <option name="totallyTimeSpent" value="42192000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <frame x="181" y="0" width="1499" height="1010" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32897604" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -603,13 +602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/Search/Search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/ExpenseType/CategoryTemplate.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -690,7 +682,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="124" column="41" lean-forward="false" selection-start-line="124" selection-start-column="41" selection-end-line="124" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -705,7 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -729,33 +719,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/Users/Login.components.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-169">
+        <state relative-caret-position="306">
           <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/Search/Search.compoment.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1615">
+          <caret line="29" column="29" lean-forward="false" selection-start-line="29" selection-start-column="29" selection-end-line="29" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Report.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="813">
-          <caret line="67" column="20" lean-forward="true" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
+        <state relative-caret-position="748">
+          <caret line="127" column="16" lean-forward="false" selection-start-line="127" selection-start-column="16" selection-end-line="127" selection-end-column="16" />
           <folding>
-            <marker date="1506987079436" expanded="true" signature="677:922" ph="SELECT c.id,... " />
-            <marker date="1506987079436" expanded="true" signature="923:1187" ph="SELECT uc.id... " />
-            <marker date="1506987079436" expanded="true" signature="1504:1827" ph="SELECT s.id,... " />
-            <marker date="1506987079436" expanded="true" signature="1828:2095" ph="SELECT us.id... " />
-            <marker date="1506987079436" expanded="true" signature="2392:2589" ph="SELECT IF(na... " />
-            <marker date="1506987079436" expanded="true" signature="2874:3214" ph="SELECT conca... " />
-            <marker date="1506987079436" expanded="true" signature="3499:3736" ph="SELECT conca... " />
+            <marker date="1506992508075" expanded="true" signature="677:922" ph="SELECT c.id,... " />
+            <marker date="1506992508075" expanded="true" signature="923:1187" ph="SELECT uc.id... " />
+            <marker date="1506992508075" expanded="true" signature="1504:1827" ph="SELECT s.id,... " />
+            <marker date="1506992508075" expanded="true" signature="1828:2095" ph="SELECT us.id... " />
+            <marker date="1506992508075" expanded="true" signature="2392:2589" ph="SELECT IF(na... " />
+            <marker date="1506992508075" expanded="true" signature="2874:3214" ph="SELECT conca... " />
+            <marker date="1506992508075" expanded="true" signature="3506:3743" ph="SELECT conca... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/Search/Search.compoment.ts">
+    <entry file="file://$PROJECT_DIR$/dist/app/Search/Search.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="214" column="23" lean-forward="false" selection-start-line="214" selection-start-column="23" selection-end-line="214" selection-end-column="23" />
-          <folding />
+        <state relative-caret-position="153">
+          <caret line="9" column="83" lean-forward="false" selection-start-line="9" selection-start-column="83" selection-end-line="9" selection-end-column="83" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#390#396#1#HTML" expanded="true" />
+            <element signature="e#449#455#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

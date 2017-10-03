@@ -106,6 +106,7 @@ order by price asc';
       }
     }
 
+    /*
     $date_query = ' SELECT concat(date_format(e.date, "%M"), ", ", year(e.date)) as name, count(*) as count
 FROM chicheng.users_expense e
 where e.user_id = '.self::$_user_id.' '.self::$_query.'
@@ -122,11 +123,9 @@ group by  concat(date_format(e.date, "%M"), ", ", year(e.date)) ';
       }
       return $res;
     }
+    */
 
-    echo '<pre>';
-    print_r($res);
-    echo '</pre>';
-
+    return $res;
     return false;
   }
 
