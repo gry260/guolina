@@ -88,7 +88,7 @@ left join category c on ue.category_id = c.id
 left join subcategory s on ue.subcategory_id = s.id
 left join user_category uc on uc.id = ue.user_category_id
 left join user_subcategory us on ue.user_subcategory_id = us.id
-where ue.user_id ='.$this->_user_id .' order by ue.id desc';
+where ue.user_id ='.$this->_user_id .' order by ue.date desc';
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
     $count = $sth->rowCount();

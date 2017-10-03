@@ -16,7 +16,7 @@ class DB
   public function __construct()
   {
     try {
-      $this->_connection = new \PDO('mysql:host=localhost; charset=utf8mb4', 'root', '');
+      $this->_connection = new \PDO('mysql:host=localhost; dbname=chicheng; charset=utf8mb4', 'root', '');
     } catch (PDOException $e) {
       echo $e->getMessage();
       exit;
