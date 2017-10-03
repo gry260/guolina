@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="32dd3af5-1c48-41e0-a122-6704304378b4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/phpapp/User.php" afterPath="$PROJECT_DIR$/dist/app/phpapp/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/app.php" afterPath="$PROJECT_DIR$/dist/app/app.php" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,6 +40,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="app.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dist/app/app.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6651217">
+              <caret line="151" column="15" selection-start-line="151" selection-start-column="15" selection-end-line="151" selection-end-column="15" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#article#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Report.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Report.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -57,11 +69,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/phpapp/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5707434">
-              <caret line="109" column="50" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="50" />
+            <state vertical-scroll-proportion="-2.7818182">
+              <caret line="90" column="57" selection-start-line="90" selection-start-column="57" selection-end-line="90" selection-end-column="57" />
               <folding>
                 <marker date="1506997169103" expanded="true" signature="999:1036" placeholder="delete FROM " />
                 <marker date="1506997169103" expanded="true" signature="1197:1237" placeholder="delete FROM " />
@@ -169,7 +181,6 @@
         <option value="$PROJECT_DIR$/dist/app/Users/Register.php" />
         <option value="$PROJECT_DIR$/dist/app/Users/Register.component.ts" />
         <option value="$PROJECT_DIR$/dist/app/init.php" />
-        <option value="$PROJECT_DIR$/dist/app/app.php" />
         <option value="$PROJECT_DIR$/dist/app/ExpenseType/Category.ts" />
         <option value="$PROJECT_DIR$/dist/app/ExpenseType/ExpenseTemplate.php" />
         <option value="$PROJECT_DIR$/dist/app/ExpenseType/Expense.ts" />
@@ -184,6 +195,7 @@
         <option value="$PROJECT_DIR$/dist/app/Search/Search.compoment.ts" />
         <option value="$PROJECT_DIR$/dist/app/db/DB.php" />
         <option value="$PROJECT_DIR$/dist/app/phpapp/User.php" />
+        <option value="$PROJECT_DIR$/dist/app/app.php" />
       </list>
     </option>
   </component>
@@ -642,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="92" selection-start-line="27" selection-start-column="92" selection-end-line="27" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -753,29 +758,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/db/DB.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5">
-          <caret line="18" column="61" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Report.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="5.8727274">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <marker date="1506995371011" expanded="true" signature="677:903" placeholder="SELECT c.id,... " />
-            <marker date="1506995371011" expanded="true" signature="904:1149" placeholder="SELECT uc.id... " />
-            <marker date="1506995371011" expanded="true" signature="1466:1770" placeholder="SELECT s.id,... " />
-            <marker date="1506995371011" expanded="true" signature="1771:2019" placeholder="SELECT us.id... " />
-            <marker date="1506995371011" expanded="true" signature="2316:2503" placeholder="SELECT IF(na... " />
-            <marker date="1506995371011" expanded="true" signature="2788:3119" placeholder="SELECT conca... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Category.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.4615386">
@@ -791,8 +773,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/phpapp/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5707434">
-          <caret line="109" column="50" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="50" />
+        <state vertical-scroll-proportion="-2.7818182">
+          <caret line="90" column="57" selection-start-line="90" selection-start-column="57" selection-end-line="90" selection-end-column="57" />
           <folding>
             <marker date="1506997169103" expanded="true" signature="999:1036" placeholder="delete FROM " />
             <marker date="1506997169103" expanded="true" signature="1197:1237" placeholder="delete FROM " />
@@ -814,6 +796,39 @@
             <marker date="1506997169103" expanded="true" signature="8881:8940" placeholder="delete from " />
             <marker date="1506997169103" expanded="true" signature="9112:9158" placeholder="select * fro... users" />
             <marker date="1506997169103" expanded="true" signature="9551:9622" placeholder="select * fro... users" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Report.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.8727274">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <marker date="1506995371011" expanded="true" signature="677:903" placeholder="SELECT c.id,... " />
+            <marker date="1506995371011" expanded="true" signature="904:1149" placeholder="SELECT uc.id... " />
+            <marker date="1506995371011" expanded="true" signature="1466:1770" placeholder="SELECT s.id,... " />
+            <marker date="1506995371011" expanded="true" signature="1771:2019" placeholder="SELECT us.id... " />
+            <marker date="1506995371011" expanded="true" signature="2316:2503" placeholder="SELECT IF(na... " />
+            <marker date="1506995371011" expanded="true" signature="2788:3119" placeholder="SELECT conca... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/db/DB.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.5">
+          <caret line="18" column="61" selection-start-line="18" selection-start-column="61" selection-end-line="18" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6651217">
+          <caret line="151" column="15" selection-start-line="151" selection-start-column="15" selection-end-line="151" selection-end-column="15" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#article#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

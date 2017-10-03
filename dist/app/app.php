@@ -143,6 +143,18 @@ require_once('./init.php');
             </div>
           </div>
         </div>
+        <div class="col-6">
+          <div class="bg alert-info" style="padding:15px;">
+          The project is builded based on Angular 4 to demonstrate my profound knowledge of how to deploy an application.
+          It was developed based on Components, Directives, Services, Forms, Http Access, Authentication, Optimizing an Angular App with Modules.
+            <br />       <br />
+       <h3 class="title"> Why Angular 4? </h3>
+            <p>
+            This is the most popular Javacript framework in the industry. I am hoping that my demonstration of this project helps me find a suitable Software Engineering Position in the modern web development industry,
+            and make  web software life easier.
+          </p>
+          </div>
+        </div>
         <?php
       }
       ?>
