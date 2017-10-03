@@ -35,7 +35,7 @@ class User
 
   public static function AddUser($data, $types)
   {
-    return \Db\DbLayer\DbLayer::insert('chicheng.users', $data, $types);
+    return \Db\DbLayer\DbLayer::insert('users', $data, $types);
   }
 
 
@@ -47,12 +47,12 @@ class User
 
   public function UpdateExpense($table, $data, $type, $where)
   {
-    \Db\DbLayer\DbLayer::update('chicheng.users_expense', $data, $where, $type);
+    \Db\DbLayer\DbLayer::update('users_expense', $data, $where, $type);
   }
 
   public function AddExpense($data, $type)
   {
-    $id = \Db\DbLayer\DbLayer::insert('chicheng.users_expense', $data, $type);
+    $id = \Db\DbLayer\DbLayer::insert('users_expense', $data, $type);
     $this->_expenses[] = new \Expense\Expense($data);
     return $id;
   }
@@ -60,7 +60,7 @@ class User
   public function DeleteCategory($id)
   {
     global $pdo_dbh;
-    $q = ' delete FROM chicheng.user_category
+    $q = ' delete FROM user_category
 where id = '.$id;
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
@@ -70,7 +70,7 @@ where id = '.$id;
   public function DeleteSubCategory($id)
   {
     global $pdo_dbh;
-    $q = ' delete FROM chicheng.user_subcategory
+    $q = ' delete FROM user_subcategory
 where id = '.$id;
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
@@ -83,11 +83,11 @@ where id = '.$id;
     $q = ' SELECT *, ifnull(c.id, uc.id) as category_id, ifnull(s.id, us.id) as subcategory_id,
 ifnull(c.name, uc.name) as category_name, ifnull(s.name, us.name) as subcategory_name, ue.id as id,
 ue.name as name, ue.user_id as user_id
- FROM chicheng.users_expense ue
-left join chicheng.category c on ue.category_id = c.id
-left join chicheng.subcategory s on ue.subcategory_id = s.id
-left join chicheng.user_category uc on uc.id = ue.user_category_id
-left join chicheng.user_subcategory us on ue.user_subcategory_id = us.id
+ FROM users_expense ue
+left join category c on ue.category_id = c.id
+left join subcategory s on ue.subcategory_id = s.id
+left join user_category uc on uc.id = ue.user_category_id
+left join user_subcategory us on ue.user_subcategory_id = us.id
 where ue.user_id ='.$this->_user_id .' order by ue.id desc';
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
@@ -105,8 +105,8 @@ where ue.user_id ='.$this->_user_id .' order by ue.id desc';
   public function getAllCategory()
   {
     global $pdo_dbh;
-    $q = 'SELECT id, name, "c" as t  FROM chicheng.category
-union SELECT id, name, "u" as t FROM  chicheng.user_category
+    $q = 'SELECT id, name, "c" as t  FROM category
+union SELECT id, name, "u" as t FROM user_category
 where user_id = '.$this->_user_id;
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
@@ -124,7 +124,7 @@ where user_id = '.$this->_user_id;
   public function getTotalMoneySpent()
   {
     global $pdo_dbh;
-    $q = 'SELECT sum(price) as price FROM chicheng.users_expense
+    $q = 'SELECT sum(price) as price FROM users_expense
 where user_id = '.$this->_user_id;
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
@@ -137,7 +137,7 @@ where user_id = '.$this->_user_id;
   public function getTotalNumberofRecords()
   {
     global $pdo_dbh;
-    $q = 'SELECT count(*) as records FROM chicheng.users_expense
+    $q = 'SELECT count(*) as records FROM users_expense
 where user_id = '.$this->_user_id;
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
@@ -150,7 +150,7 @@ where user_id = '.$this->_user_id;
   public function getUserCategory()
   {
     global $pdo_dbh;
-    $q = 'SELECT id, name FROM  chicheng.user_category
+    $q = 'SELECT id, name FROM  user_category
 where user_id = '.$this->_user_id;
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
@@ -170,10 +170,10 @@ where user_id = '.$this->_user_id;
     global $pdo_dbh;
     $q = 'SELECT c.id as category_id, c.name,  group_concat(distinct ue.subcategory_id) as subcategory_ids, group_concat(distinct sc.name) as subcategory_names, 
 	group_concat(distinct ue.user_subcategory_id) as user_subcategories, group_concat(distinct uc.name) as user_subcategories_ids
-FROM chicheng.users_expense ue
-join chicheng.category c on c.id = ue.category_id
-left join chicheng.subcategory sc on sc.id = ue.subcategory_id
-left join chicheng.user_subcategory uc on uc.id = ue.user_subcategory_id
+FROM users_expense ue
+join category c on c.id = ue.category_id
+left join subcategory sc on sc.id = ue.subcategory_id
+left join user_subcategory uc on uc.id = ue.user_subcategory_id
 where ue.user_id = '.$this->_user_id.' and ue.category_id is not null
 group by ue.category_id;';
     $sth = $pdo_dbh->prepare($q);
@@ -226,9 +226,9 @@ group by ue.category_id;';
 
     $last_counter = $count;
 
-    $q = 'SELECT uc.id as user_category_id, uc.name, group_concat(us.id) as sub_ids, group_concat(us.name) as sub_names FROM chicheng.users_expense ue
-join chicheng.user_category uc on uc.id = ue.user_category_id
-left join chicheng.user_subcategory us on us.id = ue.user_subcategory_id
+    $q = 'SELECT uc.id as user_category_id, uc.name, group_concat(us.id) as sub_ids, group_concat(us.name) as sub_names FROM users_expense ue
+join user_category uc on uc.id = ue.user_category_id
+left join user_subcategory us on us.id = ue.user_subcategory_id
 where ue.user_id = '.$this->_user_id.' and ue.user_category_id is not null
 group by ue.user_category_id;';
     $sth = $pdo_dbh->prepare($q);
@@ -269,7 +269,7 @@ group by ue.user_category_id;';
   public function SearchCategoryKeywords($cid)
   {
     global $pdo_dbh;
-    $q = 'SELECT trim(word) as word FROM chicheng.keywords_by_category where category_id ='.$cid;
+    $q = 'SELECT trim(word) as word FROM keywords_by_category where category_id ='.$cid;
     $res = array();
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
@@ -286,12 +286,12 @@ group by ue.user_category_id;';
   public function getUserSubCategory()
   {
     global $pdo_dbh;
-    $q = 'SELECT a.*, b.name as category_name FROM chicheng.user_subcategory a
-join chicheng.category b on a.category_id = b.id
+    $q = 'SELECT a.*, b.name as category_name FROM user_subcategory a
+join category b on a.category_id = b.id
 where a.user_id = '.$this->_user_id.'
 union
-SELECT a.*, c.name as category_name  FROM chicheng.user_subcategory a
-join chicheng.user_category c on a.user_category_id = c.id 
+SELECT a.*, c.name as category_name  FROM user_subcategory a
+join user_category c on a.user_category_id = c.id
 where a.user_id = '.$this->_user_id;
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
@@ -314,7 +314,7 @@ where a.user_id = '.$this->_user_id;
   public function RemoveExpense($id)
   {
     global $pdo_dbh;
-    $q = ' delete from chicheng.users_expense where id = '.$id .' and user_id ='.$this->_user_id;
+    $q = ' delete from users_expense where id = '.$id .' and user_id ='.$this->_user_id;
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
     return;
@@ -323,7 +323,7 @@ where a.user_id = '.$this->_user_id;
   public static function checkUser($username)
   {
     global $pdo_dbh;
-    $q = 'select * from chicheng.users where username = :USERNAME';
+    $q = 'select * from users where username = :USERNAME';
     $sth = $pdo_dbh->prepare($q);
     $sth->bindValue(':USERNAME', $username, \PDO::PARAM_STR);
     $sth->execute();
@@ -341,7 +341,7 @@ where a.user_id = '.$this->_user_id;
       return false;
     }
     global $pdo_dbh;
-    $q = 'select * from chicheng.users where username = :USERNAME and password = :PASSWORD';
+    $q = 'select * from users where username = :USERNAME and password = :PASSWORD';
     $sth = $pdo_dbh->prepare($q);
     $sth->bindValue(':USERNAME', $username, \PDO::PARAM_STR);
     $sth->bindValue(':PASSWORD', $password, \PDO::PARAM_STR);

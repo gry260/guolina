@@ -65,7 +65,7 @@ class Expense
   public static function getRecords()
   {
     global  $pdo_dbh;
-    $q = 'SELECT count(*) as records FROM chicheng.users_expense ';
+    $q = 'SELECT count(*) as records FROM users_expense ';
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
     $count = $sth->rowCount();
@@ -78,7 +78,7 @@ class Expense
   public static function getExpenses()
   {
     global  $pdo_dbh;
-    $q = ' SELECT sum(price) as price FROM chicheng.users_expense  ';
+    $q = ' SELECT sum(price) as price FROM users_expense  ';
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
     $count = $sth->rowCount();
@@ -91,7 +91,7 @@ class Expense
   public static function getAllUsers()
   {
     global  $pdo_dbh;
-    $q = ' select count(*) as users FROM chicheng.users;  ';
+    $q = ' select count(*) as users FROM users;  ';
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
     $count = $sth->rowCount();
@@ -104,7 +104,7 @@ class Expense
   public static function getAllTags()
   {
     global  $pdo_dbh;
-    $q = ' SELECT * FROM chicheng.users_expense
+    $q = ' SELECT * FROM users_expense
 where name is not null and name != ""
 group by name  ';
     $sth = $pdo_dbh->prepare($q);

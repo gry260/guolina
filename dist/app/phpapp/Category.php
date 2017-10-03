@@ -41,14 +41,14 @@ class Category
   {
     global $pdo_dbh;
     if ($type == 'c') {
-      $q = 'select *, "c" as t from chicheng.subcategory  where category_id = :CATEGORY_ID
-union SELECT id, name, category_id, "u" as t FROM chicheng.user_subcategory where user_id = ' . $user_id . ' and category_id = :CATEGORY_ID';
+      $q = 'select *, "c" as t from subcategory  where category_id = :CATEGORY_ID
+union SELECT id, name, category_id, "u" as t FROM user_subcategory where user_id = ' . $user_id . ' and category_id = :CATEGORY_ID';
       $sth = $pdo_dbh->prepare($q);
       $sth->bindValue(':CATEGORY_ID', $category_id, \PDO::PARAM_INT);
       $sth->execute();
       $count = $sth->rowCount();
     } else if ($type == 'u') {
-      $q = 'SELECT id, name, user_category_id, "u" as t FROM chicheng.user_subcategory where user_id = ' . $user_id . ' and user_category_id = :CATEGORY_ID';
+      $q = 'SELECT id, name, user_category_id, "u" as t FROM user_subcategory where user_id = ' . $user_id . ' and user_category_id = :CATEGORY_ID';
       $sth = $pdo_dbh->prepare($q);
       $sth->bindValue(':CATEGORY_ID', $category_id, \PDO::PARAM_INT);
       $sth->execute();

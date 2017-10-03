@@ -32,11 +32,11 @@ Class Report
   public function GetResults()
   {
     global $pdo_dbh;
-    $category_query = 'SELECT c.id, c.name, count(*) as count  FROM chicheng.users_expense e left join chicheng.category 
+    $category_query = 'SELECT c.id, c.name, count(*) as count  FROM users_expense e left join category
 c on e.category_id = c.id where e.user_id =' . self::$_user_id . ' ' . self::$_query . ' 
 and e.category_id is not null group by category_id
 union
-SELECT uc.id, uc.name, count(*) as count FROM chicheng.users_expense e left join chicheng.user_category 
+SELECT uc.id, uc.name, count(*) as count FROM users_expense e left join user_category
 uc on e.user_category_id = uc.id
  where e.user_id =' . self::$_user_id . ' ' . self::$_query . '  and e.user_category_id is not null
  group by user_category_id';
@@ -53,13 +53,13 @@ uc on e.user_category_id = uc.id
     }
 
     $subcategory_query = 'SELECT s.id, IF(s.name IS not NULL and s.name != "", s.name, "No Subcategory") as name, count(*)  as count
-FROM chicheng.users_expense e left join chicheng.subcategory 
+FROM users_expense e left join subcategory
 s on s.id = e.subcategory_id where e.user_id =' . self::$_user_id . ' ' . self::$_query.'
 and e.subcategory_id is not null group by e.subcategory_id
 union
 SELECT us.id, us.name, count(*) as count 
-FROM chicheng.users_expense e 
-left join chicheng.user_subcategory us on us.id = e.user_subcategory_id
+FROM users_expense e
+left join user_subcategory us on us.id = e.user_subcategory_id
 where e.user_id =' . self::$_user_id . ' ' . self::$_query.' 
 and e.user_category_id is not null
 group by e.subcategory_id ';
@@ -75,7 +75,7 @@ group by e.subcategory_id ';
     }
 
     $name_query = 'SELECT IF(name IS not NULL and name != "", name, "No Tags") as name, count(*)  as count
-FROM chicheng.users_expense e 
+FROM users_expense e
 where e.user_id = '.self::$_user_id.' '.self::$_query.' group by SOUNDEX(name)';
 
 
@@ -91,7 +91,7 @@ where e.user_id = '.self::$_user_id.' '.self::$_query.' group by SOUNDEX(name)';
 
     $price_query = 'SELECT concat("$", SUBSTRING(price, 1, 
 (length(round(price))/2)), REPEAT(0,(length(round(price))/2)), "(s)") as name, COUNT(*) as count
-FROM chicheng.users_expense e
+FROM users_expense e
 where e.user_id = '.self::$_user_id.' '.self::$_query.'
 GROUP BY concat(SUBSTRING(price, 1, (length(round(price))/2)), REPEAT(0,(length(round(price))/2)))
 order by price asc';
@@ -129,7 +129,7 @@ group by  concat(date_format(e.date, "%M"), ", ", year(e.date)) ';
     return false;
   }
 
-  private static function BuildParamters()
+  private staticf function BuildParamters()
   {
     if (!empty(self::$_parameters['category_ids']) && is_array(self::$_parameters['category_ids'])) {
       self::$_query .= ' and (';
