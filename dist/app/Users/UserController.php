@@ -28,7 +28,7 @@ $loader->addNamespace('\User', $_SERVER['DOCUMENT_ROOT'] . '/app/phpapp');
 $loader->loadClass("\User");
 
 $user = new \User\User();
-$user->UpdateProfile('chicheng.users', $data, $where, $types);
+$user->UpdateProfile('users', $data, $where, $types);
 
 header('Location: '.'http://'.$_SERVER['SERVER_NAME']);
 exit;

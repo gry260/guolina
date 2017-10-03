@@ -20,7 +20,7 @@ $loader->loadClass("\User");
 if (!empty($parameters['a']) && $parameters['a'] == 'addcategorytype') {
   $data = array('user_id' => $parameters['user_id'], 'name' => $parameters['name']);
   $types = array('user_id' => \PDO::PARAM_INT, 'name' => \PDO::PARAM_STR);
-  echo \Db\DbLayer\DbLayer::insert('chicheng.user_category', $data, $types);
+  echo \Db\DbLayer\DbLayer::insert('user_category', $data, $types);
   exit;
 }
 
@@ -32,7 +32,7 @@ if (!empty($parameters['a']) && $parameters['a'] == 'addsubcategorytype') {
   $parameters['type'] == "c" ? $data['category_id'] = $parameters['category_id'] : false;
   $parameters['type'] == "u" ? $data['user_category_id'] = $parameters['category_id'] : false;
   $types = array('user_id' => \PDO::PARAM_INT, 'name' => \PDO::PARAM_STR, 'category_id' => \PDO::PARAM_INT, 'user_category_id' => \PDO::PARAM_INT);
-  $id = \Db\DbLayer\DbLayer::insert('chicheng.user_subcategory', $data, $types);
+  $id = \Db\DbLayer\DbLayer::insert('user_subcategory', $data, $types);
   echo $id;
   return ;
 }
@@ -79,7 +79,7 @@ if (!empty($parameters['a']) && ($parameters['a'] == 'addexpense' || $parameters
   if($parameters['a'] == 'updateexpense'){
     $where = array();
     isset($parameters['id']) ? $where['id'] = $parameters['id'] : false;
-    $u->UpdateExpense('chicheng.users_expense;', $data, $types, $where);
+    $u->UpdateExpense('users_expense;', $data, $types, $where);
   }
 }
 
