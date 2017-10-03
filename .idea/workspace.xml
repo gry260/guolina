@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32dd3af5-1c48-41e0-a122-6704304378b4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/ExpenseType/ControllerActions.php" afterPath="$PROJECT_DIR$/dist/app/ExpenseType/ControllerActions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/Users/UserController.php" afterPath="$PROJECT_DIR$/dist/app/Users/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/phpapp/Report.php" afterPath="$PROJECT_DIR$/dist/app/phpapp/Report.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/Search/Search.compoment.ts" afterPath="$PROJECT_DIR$/dist/app/Search/Search.compoment.ts" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -67,6 +64,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Search.compoment.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dist/app/Search/Search.compoment.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3529412">
+              <caret line="214" column="42" selection-start-line="214" selection-start-column="42" selection-end-line="214" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Expense.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Expense.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -82,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Report.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Report.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Report.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.99511003">
-              <caret line="131" column="16" selection-start-line="131" selection-start-column="16" selection-end-line="131" selection-end-column="16" />
+            <state vertical-scroll-proportion="-6.509091">
+              <caret line="199" column="37" selection-start-line="199" selection-start-column="37" selection-end-line="199" selection-end-column="37" />
               <folding>
                 <marker date="1506995371011" expanded="true" signature="677:903" placeholder="SELECT c.id,... " />
                 <marker date="1506995371011" expanded="true" signature="904:1149" placeholder="SELECT uc.id... " />
@@ -210,7 +217,6 @@
         <option value="$PROJECT_DIR$/dist/app/ExpenseType/Expense.ts" />
         <option value="$PROJECT_DIR$/dist/index.php" />
         <option value="$PROJECT_DIR$/dist/app/Users/Login.components.ts" />
-        <option value="$PROJECT_DIR$/dist/app/Search/Search.compoment.ts" />
         <option value="$PROJECT_DIR$/dist/app/Search/Search.php" />
         <option value="$PROJECT_DIR$/dist/app/phpapp/Category.php" />
         <option value="$PROJECT_DIR$/dist/app/phpapp/Expense.php" />
@@ -218,6 +224,7 @@
         <option value="$PROJECT_DIR$/dist/app/ExpenseType/ControllerActions.php" />
         <option value="$PROJECT_DIR$/dist/app/Users/UserController.php" />
         <option value="$PROJECT_DIR$/dist/app/phpapp/Report.php" />
+        <option value="$PROJECT_DIR$/dist/app/Search/Search.compoment.ts" />
       </list>
     </option>
   </component>
@@ -240,9 +247,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="840" />
-    <option name="width" value="840" />
-    <option name="height" value="1010" />
+    <option name="x" value="297" />
+    <option name="y" value="157" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -365,7 +373,7 @@
     <option name="totallyTimeSpent" value="42832000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="840" y="0" width="840" height="1010" extended-state="0" />
+    <frame x="297" y="157" width="1696" height="1026" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -624,6 +632,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="23" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -669,6 +678,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="91" column="7" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -676,6 +686,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -704,6 +715,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="166" column="100" selection-start-line="166" selection-start-column="100" selection-end-line="166" selection-end-column="100" />
+          <folding>
+            <marker date="1506982958681" expanded="false" signature="7:67" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -719,14 +733,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.019698726">
           <caret line="37" column="35" selection-start-line="36" selection-start-column="74" selection-end-line="37" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/Search/Search.compoment.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.019721577">
-          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -826,8 +832,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Report.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.99511003">
-          <caret line="131" column="16" selection-start-line="131" selection-start-column="16" selection-end-line="131" selection-end-column="16" />
+        <state vertical-scroll-proportion="-6.509091">
+          <caret line="199" column="37" selection-start-line="199" selection-start-column="37" selection-end-line="199" selection-end-column="37" />
           <folding>
             <marker date="1506995371011" expanded="true" signature="677:903" placeholder="SELECT c.id,... " />
             <marker date="1506995371011" expanded="true" signature="904:1149" placeholder="SELECT uc.id... " />
@@ -836,6 +842,14 @@
             <marker date="1506995371011" expanded="true" signature="2316:2503" placeholder="SELECT IF(na... " />
             <marker date="1506995371011" expanded="true" signature="2788:3119" placeholder="SELECT conca... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/Search/Search.compoment.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3529412">
+          <caret line="214" column="42" selection-start-line="214" selection-start-column="42" selection-end-line="214" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

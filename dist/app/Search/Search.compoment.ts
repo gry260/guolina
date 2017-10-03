@@ -210,13 +210,9 @@ export class SearchComponent {
             options.user_id = LoginComponent.getUserID();
             var Observables = this.ExpenseServices.SearchReports(options);
             Observables.subscribe((res => {
-
-                console.log(res.text());
-                return;
                 if (res._body) {
                     this.hasResult = true;
                     var temp = res.json();
-                    console.log(temp);
                     var tempCount = 0;
                     var total = new Array();
                     for (var k in temp) {
