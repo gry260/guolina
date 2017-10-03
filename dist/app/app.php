@@ -153,7 +153,12 @@ require_once('./init.php');
             This is the most popular Javacript framework in the industry. I am hoping that my demonstration of this project helps me find a suitable Software Engineering Position in the modern web development industry,
             and make  web software life easier.
           </p>
+
+            Please use pre-populated     <span style="font-weight: bold;"> guest account</span>  to log in and play around.
+
           </div>
+
+
         </div>
         <?php
       }
