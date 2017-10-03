@@ -28,7 +28,10 @@
       <div class="d-flex">
         <div class="form-group">
           <label>Category
-            <input type="text"  [(ngModel)]="query" class="form-control" formControlName="name" placeholder="Category Name">
+              <input type="text" [(ngModel)]="query" class="form-control" formControlName="name" placeholder="Category Name" required  />
+              <p [hidden]="required == false" class="text-danger">
+                  Category Name is required.
+              </p>
           </label>
         </div>
         <div class="form-group ml-1">

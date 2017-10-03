@@ -32,6 +32,9 @@
                 {{item.name}}
               </option>
             </select>
+              <p [hidden]="categoryField == false" class="text-danger">
+                  Category is required.
+              </p>
           </label>
         </div>
         </div>
@@ -40,7 +43,11 @@
           <label>Subcategory
             <input type="text" [(ngModel)]="query" formControlName="name" size="28" class=" form-control " placeholder="Your SubCategory Name Under a Category">
           </label>
+            <p [hidden]="subcategoryField == false" class="text-danger text-bold">
+              <strong>  Subcategory name is required. </strong>
+            </p>
         </div>
+
         <div class="form-group ml-1">
           <label>&nbsp;
           <input type="submit" class="btn form-control btn-primary rounded" value="Add a Subcategory" />

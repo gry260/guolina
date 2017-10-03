@@ -30,6 +30,19 @@ export class UserService
         return this.http.post('app/Users/UserActions.php', body, options);
     }
 
+    public checkUser(username)
+    {
+        var obj ={
+            username: username,
+            type: 'check'
+        }
+
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      let body = JSON.stringify(obj);
+      return this.http.post('app/Users/UserActions.php', body, options);
+    }
+
     public AddUser(obj)
     {
         obj.type = 'register';

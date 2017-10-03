@@ -10,27 +10,33 @@ require_once('./init.php');
       <a class="nav-item nav-link">adf</a>
     </nav>
     -->
-    <header class="header">
+    <header class="header" style="height: auto;">
       <?php
       if (!empty($_SESSION['login'])) {
         ?>
-        <div class="card sameheight-item stats" data-exclude="xs" style="height: 68px; width: 550px">
+        <div class="card sameheight-item stats" data-exclude="xs" style="height: 68px; width: 60%;">
           <div class="card-block" style="padding:10px;">
             <div class="d-flex stats-container">
-              <div class="col-5 stat-col">
+              <div class="col-4 stat-col">
                 <div class="stat-icon float-left"><i class="fa fa-2x fa-money"></i></div>
                 <div class="ml-3">
                   <div style="font-size:18px;">$<?php echo $totalMoney['price']; ?></div>
                  <span style="font-size:14px;">Total Expense($)</span>
                 </div>
               </div>
-              <div class="col-7 stat-col">
+              <div class="col-4 stat-col">
                 <div class="stat-icon float-left"><i class="fa fa-2x fa-list-alt"></i></div>
                 <div class="ml-3">
                   <div style="font-size:18px;"><?php echo $totalRecords['records'];?></div>
                   <span style="font-size:14px;">Total Records of Expenses(s)</span>
                 </div>
               </div>
+                <div class="col-4 stat-col">
+                    <div class="stat-icon float-left"><i class="fa fa-2x fa-user"></i></div>
+                    <div class="ml-3">
+                        <div style="font-size:18px;"><?php echo $_SESSION['login']['username'];?></div>
+                    </div>
+                </div>
             </div>
           </div>
         </div>

@@ -47,3 +47,9 @@ if(!empty($parameters['type']) && $parameters['type'] == 'logout') {
     unset($_SESSION['login']);
   }
 }
+
+if(!empty($parameters['type']) && $parameters['type'] == 'check') {
+  $username = strip_tags($parameters['username']);
+  echo \User\User::checkUser($username);
+}
+

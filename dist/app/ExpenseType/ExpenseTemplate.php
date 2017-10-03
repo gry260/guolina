@@ -12,7 +12,7 @@
           <div class="alert alert-success" style="background:#dff0d8; width: 100%; color: #3c763d; border: #d0e9c6;">
               <i class="fa fa-check"></i>&nbsp;
               <b>
-                  Recorded Added.
+                  Record Added.
               </b>
           </div>
       </div>
@@ -20,7 +20,7 @@
           <div class="alert alert-success" style="background:#dff0d8; width: 100%; color: #3c763d; border: #d0e9c6;">
               <i class="fa fa-check"></i>&nbsp;
               <b>
-                  Recorded Updated.
+                  Record Updated.
               </b>
           </div>
       </div>
@@ -29,7 +29,7 @@
           <div class="alert alert-danger" style="background:#f2dede; width: 100%; color: #a94442; border: #ebcccc;">
               <i class="fa fa-check"></i>&nbsp;
               <b>
-                  Recorded Deleted.
+                  Record Deleted.
               </b>
           </div>
       </div>
@@ -47,7 +47,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let item of ExpensesArray;">
+      <tr #eachrow *ngFor="let item of ExpensesArray;">
         <td> {{ item.category_name }}</td>
         <td> {{ item.subcategory_name }}</td>
         <td> {{ item.name}}</td>
@@ -55,7 +55,7 @@
         <td>{{item.date}}</td>
         <td>{{ item.comment }}</td>
         <td>
-          <button #edit (click)="searchExpenseById(item.id)" (click)="open(content, edit)" class="btn btn-sm btn-info">
+          <button #edit (click)="searchExpenseById(item.id, eachrow)" (click)="open(content, edit)" class="btn btn-sm btn-info">
             <i class="fa  fa-1.5x fa-edit"></i>&nbsp;Edit
           </button>
           <button (click)="onDelete(item.id)" class="btn btn-sm btn-danger"><i class="fa  fa-1.5x fa-remove"></i>&nbsp;Delete
@@ -79,6 +79,9 @@
                 {{ii.name}}
               <option>
             </select>
+              <p [hidden]="categoryField == false" class="text-danger">
+                  Category is required.
+              </p>
           </label>
         </div>
         <div class="form-group ml-2">
@@ -89,6 +92,9 @@
                 {{item.name}}
               </option>
             </select>
+              <p [hidden]="subcategoryField == false" class="text-danger">
+                  Subategory name is required.
+              </p>
           </label>
         </div>
       </div>
@@ -111,6 +117,13 @@
               <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
             <input type="text" class="form-control form-control" formControlName="price" placeholder="price" #price/>
               </div>
+              <p [hidden]="priceField == false" class="text-danger">
+                  Price Field is a required field.
+              </p>
+
+              <p [hidden]="this.priceNumeric == false" class="text-danger">
+                  Price must be a numeric value.
+              </p>
           </label>
         </div>
         <div class="form-group ml-2">
@@ -120,14 +133,16 @@
             <span class="input-group-addon"><i class="fa fa-calendar-check-o"></i></span>
           <input type="text" [value]="SelectedDate" ngbDatepicker #date="ngbDatepicker" (click)="date.toggle()" class="form-control fa fa-edit" formControlName="date" placeholder="">
           </div>
+            <p [hidden]="datePurchased== false" class="text-danger" style="font-weight:600;">
+                Date Purchased is required field.
+            </p>
         </div>
       </div>
       <div class="d-flex">
         <div class="form-group">
           <label>
             Comments
-            <textarea rows="4" cols="70" class="form-control-sm form-control" #comment>
-            </textarea>
+            <textarea rows="4" cols="70" class="form-control-sm form-control" #comment></textarea>
           </label>
         </div>
         <input type="hidden" formControlName="id" placeholder="name" #id>

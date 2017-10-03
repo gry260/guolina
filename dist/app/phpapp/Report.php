@@ -52,7 +52,7 @@ uc on e.user_category_id = uc.id
       }
     }
 
-    $subcategory_query = 'SELECT s.id, SELECT IF(s.name IS not NULL and s.name != "", s.name, "No Subcategory") as name, count(*)  as count
+    $subcategory_query = 'SELECT s.id, IF(s.name IS not NULL and s.name != "", s.name, "No Subcategory") as name, count(*)  as count
 FROM chicheng.users_expense e left join chicheng.subcategory 
 s on s.id = e.subcategory_id where e.user_id =' . self::$_user_id . ' ' . self::$_query.'
 and e.subcategory_id is not null group by e.subcategory_id
@@ -77,6 +77,7 @@ group by e.subcategory_id ';
     $name_query = 'SELECT IF(name IS not NULL and name != "", name, "No Tags") as name, count(*)  as count
 FROM chicheng.users_expense e 
 where e.user_id = '.self::$_user_id.' '.self::$_query.' group by SOUNDEX(name)';
+
 
     $sth = $pdo_dbh->prepare($name_query);
     $sth->execute();
@@ -121,6 +122,10 @@ group by  concat(date_format(e.date, "%M"), ", ", year(e.date)) ';
       }
       return $res;
     }
+
+    echo '<pre>';
+    print_r($res);
+    echo '</pre>';
 
     return false;
   }
@@ -187,7 +192,7 @@ group by  concat(date_format(e.date, "%M"), ", ", year(e.date)) ';
     }
 
     if (!empty(self::$_parameters['name'])) {
-      self::$_query .= ' and e.name like "%' . self::$_parameters['name'] . '%"';
+      self::$_query .= ' and e.name like "' . self::$_parameters['name'] . '"';
     }
 
     if (!empty(self::$_parameters['last'])) {

@@ -20,6 +20,10 @@ export class SubCategoryComponent {
   justAdded: boolean;
   justDeleted: boolean;
   query: string;
+  categoryField = false;
+  subcategoryField = false;
+
+
 
 
   @Input() userSubCategories;
@@ -76,6 +80,25 @@ export class SubCategoryComponent {
 
   onSubmit(value, v) {
     if(LoginComponent.getUserID()) {
+
+      if(!value.category_obj){
+        this.categoryField = true;
+      }
+      else{
+        this.categoryField = false;
+      }
+
+      if(!value.name){
+        this.subcategoryField = true;
+      }
+      else{
+        this.subcategoryField = false;
+      }
+
+      if(!value.category_obj || !value.name){
+        return;
+      }
+
       this.expenseServices.AddExpenseSubCategoryType({
         name: value.name,
         category_id: value.category_obj.id,
@@ -101,10 +124,11 @@ export class SubCategoryComponent {
             }]
           });
         }
-
           this.justAdded = true;
           this.justDeleted = false;
           this.query = '';
+          this.categoryField = false;
+          this.subcategoryField = false;
 
       }, error => {
         console.log(error.json());

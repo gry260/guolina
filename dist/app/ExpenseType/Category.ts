@@ -27,8 +27,7 @@ export class CategoryComponent {
   justAdded: any;
   justDeleted: any;
   query: string;
-
-
+  required  =  false;
 
   constructor(e: ExpenseService, s: SubCategoryComponent, h: Http) {
     this.s = s;
@@ -51,7 +50,7 @@ export class CategoryComponent {
       this.SubCategoryObj = new SubCategoryComponent(this.e, this.http);
     }
     this.CategoryTypeForm = new FormGroup({
-      name: new FormControl(''),
+      name: new FormControl('', [Validators.required]),
     });
   }
 
@@ -85,7 +84,12 @@ export class CategoryComponent {
   }
 
   onSubmit(value) {
+
     if(LoginComponent.getUserID()) {
+      if(!(value.name)){
+        this.required = true;
+        return;
+      }
       var Observables = this.e.AddCategory(LoginComponent.getUserID(), value.name);
       Observables.subscribe((res => {
         this.SubCategoryObj.addCategory(res.text().trim(), value.name);
@@ -93,6 +97,7 @@ export class CategoryComponent {
         this.justAdded = true;
         this.justDeleted = false;
         this.query = '';
+        this.required = false;
       }));
     }
   }

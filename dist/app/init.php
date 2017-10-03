@@ -25,7 +25,6 @@ $loader->loadClass("\Expense");
 $instance = \Db\DB::getInstance();
 $pdo_dbh = $instance->getConnection();
 
-
 if(!empty($_SESSION['login']['id'])){
   $user_id = $_SESSION['login']['id'];
   $user = new \User\User($user_id);

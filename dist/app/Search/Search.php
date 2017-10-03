@@ -15,7 +15,7 @@
       </div>
 
     <div class="row" *ngIf="hasResult == true">
-      <div class="col-4 mt-1" *ngFor="let item of label; let i = index">
+      <div class="col-3 mt-1" *ngFor="let item of label; let i = index">
           <label><i class="fa fa-pie-chart fa-lg"></i> Count Percentages By {{ TypeLabels[i]  }}</label>
         <canvas baseChart [labels]="item" [data]="dataSet[i]" [colors]="colorsUndefined" [chartType]="type"></canvas>
       </div>

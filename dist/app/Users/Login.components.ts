@@ -17,6 +17,8 @@ export class LoginComponent
     e;
     ue;
     static UserID: number;
+    msg: false;
+
 
     constructor(ue: UserService)
     {
@@ -26,20 +28,24 @@ export class LoginComponent
 
     ngOnInit() {
         this.e = new FormGroup({
-            username: new FormControl(''),
-            password: new FormControl(''),
+            username: new FormControl('guest'),
+            password: new FormControl('rena19891022'),
         });
     }
     onSubmit(obj)
     {
         this.ue.Authenticate(obj).subscribe(res => {
-           if(typeof(res.text().trim()) == 'string' && res.text()){
+           if(typeof(res.text().trim()) == 'string' && res.text() && res.text() !== 'false'){
               if(this.isJson(res.text())){
                   var json = res.json();
                   localStorage.setItem('login', JSON.stringify(json));
                   LoginComponent.UserID = json.id;
                   window.location.href='./';
               }
+              this.msg = false;
+           }
+           else{
+               this.msg = true;
            }
         });
     }

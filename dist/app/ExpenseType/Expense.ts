@@ -60,6 +60,13 @@ export class ExpenseComponent {
     user_category_id:number;
     modalRef:any;
     keywords = new Array();
+    categoryField = false;
+    subcategoryField = false;
+    priceField = false;
+    datePurchased =  false;
+    priceNumeric = false;
+
+
     search = (text$:Observable<string>) =>
         text$
             .debounceTime(200)
@@ -137,8 +144,10 @@ export class ExpenseComponent {
         //this.ListSubCategories = data;
 
         this.ExpenseService.GetCategoryKeyWords(id).subscribe(res => {
-            if (typeof (res.json()) == 'object') {
+            if(res.json()) {
+              if (typeof (res.json()) == 'object') {
                 this.keywords = res.json();
+              }
             }
         });
 
@@ -146,6 +155,16 @@ export class ExpenseComponent {
 
     onSubmit(c, subcategory_obj, name, price, date, comment, id) {
 
+        !c.value ?   this.categoryField = true : this.categoryField = false;
+        !subcategory_obj.value ? this.subcategoryField = true: this.subcategoryField = false;
+        !price.value ? this.priceField = true : this.priceField = false;
+        !date._elRef.nativeElement.value ? this.datePurchased = true : this.datePurchased = false;
+
+        if(this.categoryField == true || this.subcategoryField == true || this.priceField == true || this.datePurchased == true){
+            return;
+        }
+
+        this.isNumeric(price.value) == false ? this.priceNumeric = true : this.priceNumeric = false;
         var SubmittedObj = {
             user_id: LoginComponent.getUserID(),
             category_name: c.options[c.selectedIndex].innerHTML,
@@ -217,6 +236,10 @@ export class ExpenseComponent {
         return true;
     }
 
+    isNumeric(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
     onDelete(id) {
         if (LoginComponent.getUserID()) {
             this.ExpenseService.RemoveExpense({id: id, user_id: LoginComponent.getUserID()}).subscribe(data => {
@@ -233,7 +256,8 @@ export class ExpenseComponent {
         }
     }
 
-    searchExpenseById(ExpenseID) {
+    searchExpenseById(ExpenseID, row) {
+      row.className = 'table-success';
         if (LoginComponent.getUserID()) {
             for (var i in this.ExpensesArray) {
                 if (ExpenseID == this.ExpensesArray[i].id) {

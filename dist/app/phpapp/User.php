@@ -88,7 +88,7 @@ left join chicheng.category c on ue.category_id = c.id
 left join chicheng.subcategory s on ue.subcategory_id = s.id
 left join chicheng.user_category uc on uc.id = ue.user_category_id
 left join chicheng.user_subcategory us on ue.user_subcategory_id = us.id
-where ue.user_id ='.$this->_user_id;
+where ue.user_id ='.$this->_user_id .' order by ue.id desc';
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
     $count = $sth->rowCount();
@@ -320,8 +320,26 @@ where a.user_id = '.$this->_user_id;
     return;
   }
 
+  public static function checkUser($username)
+  {
+    global $pdo_dbh;
+    $q = 'select * from chicheng.users where username = :USERNAME';
+    $sth = $pdo_dbh->prepare($q);
+    $sth->bindValue(':USERNAME', $username, \PDO::PARAM_STR);
+    $sth->execute();
+    $count = $sth->rowCount();
+    return $count > 0 ? true: false;
+  }
+
   public static function authenticate($username, $password)
   {
+
+    if(empty($username)){
+      return false;
+    }
+    if(empty($password)){
+      return false;
+    }
     global $pdo_dbh;
     $q = 'select * from chicheng.users where username = :USERNAME and password = :PASSWORD';
     $sth = $pdo_dbh->prepare($q);
@@ -330,7 +348,7 @@ where a.user_id = '.$this->_user_id;
     $sth->execute();
     $count = $sth->rowCount();
     $result = $sth->fetch(\PDO::FETCH_ASSOC);
-    return $count > 0 ? array('id'=>$result['id'],'user_key'=>$result['user_key']) : false;
+    return $count > 0 ? array('id'=>$result['id'],'user_key'=>$result['user_key'], 'username'=>$result['username']) : false;
   }
 }
 

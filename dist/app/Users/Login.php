@@ -2,6 +2,9 @@
   <div class="d-flex">
     <div class="input-container ml-1"><label class="control-label" style="margin-bottom: 0px;">Username </label>
         <input type="text" class="form-control boxed" formControlName="username"/>
+        <p *ngIf="msg" class="text-danger" style="font-weight:600;">
+            Your credential could not be verified, please try again.
+        </p>
     </div>
     <div class="input-container ml-1"><label class="control-label" style="margin-bottom: 0px;">Password </label>
         <input type="password" class="form-control boxed " formControlName="password"/>
