@@ -107,7 +107,7 @@ where ue.user_id ='.$this->_user_id .' order by ue.date desc';
     global $pdo_dbh;
     $q = 'SELECT id, name, "c" as t  FROM category
 union SELECT id, name, "u" as t FROM user_category
-where user_id = '.$this->_user_id;
+where user_id = '.$this->_user_id .' order by name';
     $sth = $pdo_dbh->prepare($q);
     $sth->execute();
     $count = $sth->rowCount();

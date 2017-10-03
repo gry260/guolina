@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="32dd3af5-1c48-41e0-a122-6704304378b4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/db/DB.php" afterPath="$PROJECT_DIR$/dist/app/db/DB.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/app/phpapp/User.php" afterPath="$PROJECT_DIR$/dist/app/phpapp/User.php" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -61,27 +60,44 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dist/app/phpapp/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55755395">
-              <caret line="90" column="55" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.5707434">
+              <caret line="109" column="50" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="50" />
               <folding>
-                <marker date="1506996758411" expanded="true" signature="999:1036" placeholder="delete FROM " />
-                <marker date="1506996758411" expanded="true" signature="1197:1237" placeholder="delete FROM " />
-                <marker date="1506996758411" expanded="true" signature="1392:1919" placeholder="SELECT *, if... users_expense" />
-                <marker date="1506996758411" expanded="true" signature="2272:2312" placeholder="SELECT id, n... category" />
-                <marker date="1506996758411" expanded="true" signature="2272:2380" placeholder="SELECT id, n... " />
-                <marker date="1506996758411" expanded="true" signature="2319:2380" placeholder="SELECT id, n... user_category" />
-                <marker date="1506996758411" expanded="true" signature="2753:2815" placeholder="SELECT sum(p... users_expense" />
-                <marker date="1506996758411" expanded="true" signature="3077:3139" placeholder="SELECT count... users_expense" />
-                <marker date="1506996758411" expanded="true" signature="3393:3445" placeholder="SELECT id, n... user_category" />
-                <marker date="1506996758411" expanded="true" signature="3820:4373" placeholder="SELECT c.id users_expense" />
-                <marker date="1506996758411" expanded="true" signature="6189:6541" placeholder="SELECT uc.id... users_expense" />
-                <marker date="1506996758411" expanded="true" signature="7680:7751" placeholder="SELECT trim(... keywords_by_category" />
-                <marker date="1506996758411" expanded="true" signature="8123:8241" placeholder="SELECT a.*, user_subcategory" />
-                <marker date="1506996758411" expanded="true" signature="8123:8396" placeholder="SELECT a.*, " />
-                <marker date="1506996758411" expanded="true" signature="8267:8396" placeholder="SELECT a.*, user_subcategory" />
-                <marker date="1506996758411" expanded="true" signature="8863:8922" placeholder="delete from " />
-                <marker date="1506996758411" expanded="true" signature="9094:9140" placeholder="select * fro... users" />
-                <marker date="1506996758411" expanded="true" signature="9533:9604" placeholder="select * fro... users" />
+                <marker date="1506997169103" expanded="true" signature="999:1036" placeholder="delete FROM " />
+                <marker date="1506997169103" expanded="true" signature="1197:1237" placeholder="delete FROM " />
+                <marker date="1506997169103" expanded="true" signature="1392:1919" placeholder="SELECT *, if... users_expense" />
+                <marker date="1506997169103" expanded="true" signature="2272:2312" placeholder="SELECT id, n... category" />
+                <marker date="1506997169103" expanded="true" signature="2272:2380" placeholder="SELECT id, n... " />
+                <marker date="1506997169103" expanded="true" signature="2272:2397" placeholder="SELECT id, n... " />
+                <marker date="1506997169103" expanded="true" signature="2272:2414" placeholder="SELECT id, n... " />
+                <marker date="1506997169103" expanded="true" signature="2319:2380" placeholder="SELECT id, n... user_category" />
+                <marker date="1506997169103" expanded="true" signature="2771:2833" placeholder="SELECT sum(p... users_expense" />
+                <marker date="1506997169103" expanded="true" signature="3095:3157" placeholder="SELECT count... users_expense" />
+                <marker date="1506997169103" expanded="true" signature="3411:3463" placeholder="SELECT id, n... user_category" />
+                <marker date="1506997169103" expanded="true" signature="3838:4391" placeholder="SELECT c.id users_expense" />
+                <marker date="1506997169103" expanded="true" signature="6207:6559" placeholder="SELECT uc.id... users_expense" />
+                <marker date="1506997169103" expanded="true" signature="7698:7769" placeholder="SELECT trim(... keywords_by_category" />
+                <marker date="1506997169103" expanded="true" signature="8141:8259" placeholder="SELECT a.*, user_subcategory" />
+                <marker date="1506997169103" expanded="true" signature="8141:8414" placeholder="SELECT a.*, " />
+                <marker date="1506997169103" expanded="true" signature="8285:8414" placeholder="SELECT a.*, user_subcategory" />
+                <marker date="1506997169103" expanded="true" signature="8881:8940" placeholder="delete from " />
+                <marker date="1506997169103" expanded="true" signature="9112:9158" placeholder="select * fro... users" />
+                <marker date="1506997169103" expanded="true" signature="9551:9622" placeholder="select * fro... users" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Category.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Category.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.4615386">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+              <folding>
+                <marker date="1506994685475" expanded="true" signature="641:710" placeholder="select *, &quot;c... subcategory" />
+                <marker date="1506994685475" expanded="true" signature="641:841" placeholder="select *, &quot;c... " />
+                <marker date="1506994685475" expanded="true" signature="717:841" placeholder="SELECT id, n... user_subcategory" />
+                <marker date="1506994685475" expanded="true" signature="1049:1183" placeholder="SELECT id, n... user_subcategory" />
               </folding>
             </state>
           </provider>
@@ -190,8 +206,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="297" />
-    <option name="y" value="157" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1696" />
     <option name="height" value="1026" />
   </component>
@@ -316,7 +332,7 @@
     <option name="totallyTimeSpent" value="42832000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="297" y="157" width="1696" height="1026" extended-state="0" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -703,19 +719,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.3454547">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <marker date="1506994685475" expanded="true" signature="641:710" placeholder="select *, &quot;c... subcategory" />
-            <marker date="1506994685475" expanded="true" signature="641:841" placeholder="select *, &quot;c... " />
-            <marker date="1506994685475" expanded="true" signature="717:841" placeholder="SELECT id, n... user_subcategory" />
-            <marker date="1506994685475" expanded="true" signature="1049:1183" placeholder="SELECT id, n... user_subcategory" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/ExpenseType/ControllerActions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.581819">
@@ -773,29 +776,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dist/app/phpapp/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.4615386">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding>
+            <marker date="1506994685475" expanded="true" signature="641:710" placeholder="select *, &quot;c... subcategory" />
+            <marker date="1506994685475" expanded="true" signature="641:841" placeholder="select *, &quot;c... " />
+            <marker date="1506994685475" expanded="true" signature="717:841" placeholder="SELECT id, n... user_subcategory" />
+            <marker date="1506994685475" expanded="true" signature="1049:1183" placeholder="SELECT id, n... user_subcategory" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dist/app/phpapp/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55755395">
-          <caret line="90" column="55" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.5707434">
+          <caret line="109" column="50" selection-start-line="109" selection-start-column="50" selection-end-line="109" selection-end-column="50" />
           <folding>
-            <marker date="1506996758411" expanded="true" signature="999:1036" placeholder="delete FROM " />
-            <marker date="1506996758411" expanded="true" signature="1197:1237" placeholder="delete FROM " />
-            <marker date="1506996758411" expanded="true" signature="1392:1919" placeholder="SELECT *, if... users_expense" />
-            <marker date="1506996758411" expanded="true" signature="2272:2312" placeholder="SELECT id, n... category" />
-            <marker date="1506996758411" expanded="true" signature="2272:2380" placeholder="SELECT id, n... " />
-            <marker date="1506996758411" expanded="true" signature="2319:2380" placeholder="SELECT id, n... user_category" />
-            <marker date="1506996758411" expanded="true" signature="2753:2815" placeholder="SELECT sum(p... users_expense" />
-            <marker date="1506996758411" expanded="true" signature="3077:3139" placeholder="SELECT count... users_expense" />
-            <marker date="1506996758411" expanded="true" signature="3393:3445" placeholder="SELECT id, n... user_category" />
-            <marker date="1506996758411" expanded="true" signature="3820:4373" placeholder="SELECT c.id users_expense" />
-            <marker date="1506996758411" expanded="true" signature="6189:6541" placeholder="SELECT uc.id... users_expense" />
-            <marker date="1506996758411" expanded="true" signature="7680:7751" placeholder="SELECT trim(... keywords_by_category" />
-            <marker date="1506996758411" expanded="true" signature="8123:8241" placeholder="SELECT a.*, user_subcategory" />
-            <marker date="1506996758411" expanded="true" signature="8123:8396" placeholder="SELECT a.*, " />
-            <marker date="1506996758411" expanded="true" signature="8267:8396" placeholder="SELECT a.*, user_subcategory" />
-            <marker date="1506996758411" expanded="true" signature="8863:8922" placeholder="delete from " />
-            <marker date="1506996758411" expanded="true" signature="9094:9140" placeholder="select * fro... users" />
-            <marker date="1506996758411" expanded="true" signature="9533:9604" placeholder="select * fro... users" />
+            <marker date="1506997169103" expanded="true" signature="999:1036" placeholder="delete FROM " />
+            <marker date="1506997169103" expanded="true" signature="1197:1237" placeholder="delete FROM " />
+            <marker date="1506997169103" expanded="true" signature="1392:1919" placeholder="SELECT *, if... users_expense" />
+            <marker date="1506997169103" expanded="true" signature="2272:2312" placeholder="SELECT id, n... category" />
+            <marker date="1506997169103" expanded="true" signature="2272:2380" placeholder="SELECT id, n... " />
+            <marker date="1506997169103" expanded="true" signature="2272:2397" placeholder="SELECT id, n... " />
+            <marker date="1506997169103" expanded="true" signature="2272:2414" placeholder="SELECT id, n... " />
+            <marker date="1506997169103" expanded="true" signature="2319:2380" placeholder="SELECT id, n... user_category" />
+            <marker date="1506997169103" expanded="true" signature="2771:2833" placeholder="SELECT sum(p... users_expense" />
+            <marker date="1506997169103" expanded="true" signature="3095:3157" placeholder="SELECT count... users_expense" />
+            <marker date="1506997169103" expanded="true" signature="3411:3463" placeholder="SELECT id, n... user_category" />
+            <marker date="1506997169103" expanded="true" signature="3838:4391" placeholder="SELECT c.id users_expense" />
+            <marker date="1506997169103" expanded="true" signature="6207:6559" placeholder="SELECT uc.id... users_expense" />
+            <marker date="1506997169103" expanded="true" signature="7698:7769" placeholder="SELECT trim(... keywords_by_category" />
+            <marker date="1506997169103" expanded="true" signature="8141:8259" placeholder="SELECT a.*, user_subcategory" />
+            <marker date="1506997169103" expanded="true" signature="8141:8414" placeholder="SELECT a.*, " />
+            <marker date="1506997169103" expanded="true" signature="8285:8414" placeholder="SELECT a.*, user_subcategory" />
+            <marker date="1506997169103" expanded="true" signature="8881:8940" placeholder="delete from " />
+            <marker date="1506997169103" expanded="true" signature="9112:9158" placeholder="select * fro... users" />
+            <marker date="1506997169103" expanded="true" signature="9551:9622" placeholder="select * fro... users" />
           </folding>
         </state>
       </provider>
